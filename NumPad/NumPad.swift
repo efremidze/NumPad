@@ -10,26 +10,32 @@ import UIKit
 
 public protocol NumPadDataSource: class {
     
+    func numberOfRowsInNumberPad(numPad: NumPad) -> Int
+    func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
+    
+}
+
+extension NumPadDataSource {
+    
+    
+    
 }
 
 public protocol NumPadDelegate: class {
+    
+    func numPad(numPad: NumPad, didSelectButtonAtIndexPath indexPath: NSIndexPath)
+    
+}
+
+extension NumPadDelegate {
+    
+    func numPad(numPad: NumPad, didSelectButtonAtIndexPath indexPath: NSIndexPath) {}
     
 }
 
 public class NumPad: UIView {
 
-    let collectionView = Init(UICollectionView()) {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.backgroundColor = .clearColor()
-        $0.allowsSelection = false
-        $0.scrollEnabled = false
-        $0.register(CollectionViewCell.self)
-    }
-    
-    let collectionViewLayout = Init(UICollectionViewFlowLayout()) {
-        $0.minimumLineSpacing = 0
-        $0.minimumInteritemSpacing = 0
-    }
+    let collectionView = UICollectionView()
     
     weak public var delegate: NumPadDataSource?
     weak public var dataSource: NumPadDelegate?
@@ -45,9 +51,19 @@ public class NumPad: UIView {
     }
     
     func setup() {
-        collectionView.collectionViewLayout = collectionViewLayout
+        collectionView.collectionViewLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+            return layout
+        }()
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .clearColor()
+        collectionView.allowsSelection = false
+        collectionView.scrollEnabled = false
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.register(CollectionViewCell.self)
         addSubview(collectionView)
         
         let views = ["collectionView": collectionView]
@@ -66,6 +82,14 @@ public class NumPad: UIView {
 // MARK: - UICollectionViewDataSource
 extension NumPad: UICollectionViewDataSource {
     
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var items = 0
+        
+        
+        
+        return items
+    }
+    
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
@@ -81,10 +105,33 @@ extension NumPad: UICollectionViewDelegate {
     
 }
 
-@warn_unused_result
-func Init<Type>(value: Type, @noescape block: Type -> Void) -> Type {
-    block(value)
-    return value
+
+
+// MARK: - CollectionViewCell
+class CollectionViewCell: UICollectionViewCell, ReusableView {
+    
+    let button = UIButton(type: .Custom)
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    func setup() {
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.textAlignment = .Center
+        contentView.addSubview(button)
+        
+        let views = ["button": button]
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-1-[button]|", options: [], metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
+    }
+    
 }
 
 protocol ReusableView: class {
@@ -108,34 +155,6 @@ extension UICollectionView {
             fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
         }
         return cell
-    }
-    
-}
-
-// MARK: - CollectionViewCell
-class CollectionViewCell: UICollectionViewCell, ReusableView {
-    
-    let button = Init(UIButton(type: .Custom)) {
-        $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.titleLabel?.textAlignment = .Center
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    func setup() {
-        contentView.addSubview(button)
-        
-        let views = ["button": button]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-1-[button]|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
     }
     
 }
