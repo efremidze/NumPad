@@ -8,10 +8,13 @@
 
 import UIKit
 
+public typealias Position = (row: Int, column: Int)
+
 public protocol NumPadDataSource: class {
     
     func numberOfRowsInNumberPad(numPad: NumPad) -> Int
     func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
+    func numPad(numPad: NumPad, titleForButtonAtPosition position: Position) -> String
     
 }
 
@@ -83,17 +86,16 @@ public class NumPad: UIView {
 extension NumPad: UICollectionViewDataSource {
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var items = 0
-        
-        
-        
-        return items
+        return (0..<numberOfRows()).map { numberOfColumnsInRow($0) }.reduce(0, combine: +)
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: CollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
+        let position = positionForIndexPath(indexPath)
         
+        let title = delegate?.numPad(self, titleForButtonAtPosition: position)
+        cell.button.setTitle(title, forState: .Normal)
         
         return cell
     }
@@ -105,7 +107,28 @@ extension NumPad: UICollectionViewDelegate {
     
 }
 
+// MARK: - Helpers
+extension NumPad {
+    
+    func positionForIndexPath(indexPath: NSIndexPath) -> Position {
+        let row = rowForIndexPath(indexPath)
+        return (row: row, column: 0)
+    }
+    
+    func rowForIndexPath(indexPath: NSIndexPath) -> Int {
+        
+        return 0
+    }
 
+    func numberOfRows() -> Int {
+        return delegate?.numberOfRowsInNumberPad(self) ?? 0
+    }
+    
+    func numberOfColumnsInRow(row: Int) -> Int {
+        return delegate?.numPad(self, numberOfColumnsInRow: row) ?? 0
+    }
+    
+}
 
 // MARK: - CollectionViewCell
 class CollectionViewCell: UICollectionViewCell, ReusableView {
