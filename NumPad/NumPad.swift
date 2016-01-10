@@ -18,6 +18,11 @@ public protocol NumPadDataSource: class {
     func numberOfRowsInNumberPad(numPad: NumPad) -> Int
     func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
     func numPad(numPad: NumPad, titleForButtonAtPosition position: Position) -> String
+    func numPad(numPad: NumPad, titleColorForButtonAtPosition position: Position) -> UIColor
+    func numPad(numPad: NumPad, fontForButtonAtPosition position: Position) -> UIFont
+    func numPad(numPad: NumPad, imageForButtonAtPosition position: Position) -> UIImage
+    func numPad(numPad: NumPad, backgroundColorForButtonAtPosition position: Position) -> UIColor
+    func numPad(numPad: NumPad, backgroundHighlightedColorForButtonAtPosition position: Position) -> UIColor
     
 }
 
@@ -104,6 +109,25 @@ extension NumPad: UICollectionViewDataSource {
         let title = delegate?.numPad(self, titleForButtonAtPosition: position)
         cell.button.setTitle(title, forState: .Normal)
         
+        let titleColor = delegate?.numPad(self, titleColorForButtonAtPosition: position)
+        cell.button.setTitleColor(titleColor, forState: .Normal)
+        cell.button.tintColor = titleColor
+        
+        let font = delegate?.numPad(self, fontForButtonAtPosition: position)
+        cell.button.titleLabel?.font = font
+        
+        let image = delegate?.numPad(self, imageForButtonAtPosition: position)
+        cell.button.setImage(image, forState: .Normal)
+        
+        let backgroundColor = delegate?.numPad(self, backgroundColorForButtonAtPosition: position)
+        let backgroundColorImage = backgroundColor?.toImage()
+        cell.button.setBackgroundImage(backgroundColorImage, forState: .Normal)
+        
+        let backgroundHighlightedColor = delegate?.numPad(self, backgroundHighlightedColorForButtonAtPosition: position)
+        let backgroundHighlightedColorImage = backgroundHighlightedColor?.toImage()
+        cell.button.setBackgroundImage(backgroundHighlightedColorImage, forState: .Highlighted)
+        cell.button.setBackgroundImage(backgroundHighlightedColorImage, forState: .Selected)
+        
         return cell
     }
     
@@ -179,6 +203,29 @@ extension UICollectionView {
             fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
         }
         return cell
+    }
+    
+}
+
+extension UIColor {
+    
+    func toImage() -> UIImage {
+        return UIImage(color: self)
+    }
+    
+}
+
+extension UIImage {
+    
+    convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        var rect = CGRectZero
+        rect.size = size
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        self.init(CGImage: image.CGImage!)
     }
     
 }
