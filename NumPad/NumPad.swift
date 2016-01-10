@@ -85,8 +85,12 @@ public class NumPad: UIView {
 // MARK: - UICollectionViewDataSource
 extension NumPad: UICollectionViewDataSource {
     
+    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return numberOfRows()
+    }
+    
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (0..<numberOfRows()).map { numberOfColumnsInRow($0) }.reduce(0, combine: +)
+        return numberOfColumnsInRow(section)
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -111,15 +115,9 @@ extension NumPad: UICollectionViewDelegate {
 extension NumPad {
     
     func positionForIndexPath(indexPath: NSIndexPath) -> Position {
-        let row = rowForIndexPath(indexPath)
-        return (row: row, column: 0)
+        return (row: indexPath.section, column: indexPath.item)
     }
     
-    func rowForIndexPath(indexPath: NSIndexPath) -> Int {
-        
-        return 0
-    }
-
     func numberOfRows() -> Int {
         return delegate?.numberOfRowsInNumberPad(self) ?? 0
     }
