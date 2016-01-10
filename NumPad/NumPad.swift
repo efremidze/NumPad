@@ -18,18 +18,19 @@ public struct Position {
 public protocol NumPadDataSource: class {
     func numberOfRowsInNumberPad(numPad: NumPad) -> Int
     func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
-    func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton
 }
 
 // MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
-    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
+    func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position)
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize
+    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
 }
 
 extension NumPadDelegate {
-    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
+    func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position) {}
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize { return size }
+    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
 }
 
 // MARK: - NumPad
@@ -92,14 +93,19 @@ extension NumPad: UICollectionViewDataSource {
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        
-        let position = positionForIndexPath(indexPath)
-        
-        cell.button = dataSource?.numPad(self, buttonForPosition: position)
-        
         cell.delegate = self
-        
         return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegate
+extension NumPad: UICollectionViewDelegate {
+
+    public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
+        guard let button = (cell as? Cell)?.button else { return }
+        let position = positionForIndexPath(indexPath)
+        delegate?.numPad(self, configureButton: button, forPosition: position)
     }
     
 }
