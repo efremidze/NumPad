@@ -8,7 +8,10 @@
 
 import UIKit
 
-public typealias Position = (row: Int, column: Int)
+public struct Position {
+    let row: Int
+    let column: Int
+}
 
 public protocol NumPadDataSource: class {
     
@@ -115,7 +118,7 @@ extension NumPad: UICollectionViewDelegate {
 extension NumPad {
     
     func positionForIndexPath(indexPath: NSIndexPath) -> Position {
-        return (row: indexPath.section, column: indexPath.item)
+        return Position(row: indexPath.section, column: indexPath.item)
     }
     
     func numberOfRows() -> Int {
