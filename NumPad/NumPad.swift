@@ -24,10 +24,12 @@ public protocol NumPadDataSource: class {
 // MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
+    func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize
 }
 
 extension NumPadDelegate {
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
+    func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize { return size }
 }
 
 // MARK: - NumPad
@@ -98,6 +100,23 @@ extension NumPad: UICollectionViewDataSource {
         cell.delegate = self
         
         return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension NumPad: UICollectionViewDelegateFlowLayout {
+    
+    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let numberOfRows = CGFloat(self.numberOfRows())
+        let numberOfColumns = CGFloat(self.numberOfColumnsInRow(indexPath.section))
+        
+        let width = collectionView.frame.width / numberOfColumns
+        let height = collectionView.frame.height / numberOfRows
+        let size = CGSize(width: width, height: height)
+        
+        let position = positionForIndexPath(indexPath)
+        return delegate?.numPad(self, sizeForButtonAtPosition: position, defaultSize: size) ?? size
     }
     
 }
