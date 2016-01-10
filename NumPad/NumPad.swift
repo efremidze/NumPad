@@ -8,48 +8,35 @@
 
 import UIKit
 
+// MARK: - Position
 public struct Position {
     let row: Int
     let column: Int
 }
 
+// MARK: - NumPadDataSource
 public protocol NumPadDataSource: class {
-    
     func numberOfRowsInNumberPad(numPad: NumPad) -> Int
     func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
-    func numPad(numPad: NumPad, titleForButtonAtPosition position: Position) -> String
-    func numPad(numPad: NumPad, titleColorForButtonAtPosition position: Position) -> UIColor
-    func numPad(numPad: NumPad, fontForButtonAtPosition position: Position) -> UIFont
-    func numPad(numPad: NumPad, imageForButtonAtPosition position: Position) -> UIImage
-    func numPad(numPad: NumPad, backgroundColorForButtonAtPosition position: Position) -> UIColor
-    func numPad(numPad: NumPad, backgroundHighlightedColorForButtonAtPosition position: Position) -> UIColor
-    
+    func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton
 }
 
-extension NumPadDataSource {
-    
-    
-    
-}
-
+// MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
-    
-    func numPad(numPad: NumPad, didSelectButtonAtIndexPath indexPath: NSIndexPath)
-    
+    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
 }
 
 extension NumPadDelegate {
-    
-    func numPad(numPad: NumPad, didSelectButtonAtIndexPath indexPath: NSIndexPath) {}
-    
+    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
 }
 
+// MARK: - NumPad
 public class NumPad: UIView {
 
     let collectionView = UICollectionView()
     
-    weak public var delegate: NumPadDataSource?
-    weak public var dataSource: NumPadDelegate?
+    weak public var dataSource: NumPadDataSource?
+    weak public var delegate: NumPadDelegate?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -74,7 +61,7 @@ public class NumPad: UIView {
         collectionView.scrollEnabled = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(CollectionViewCell.self)
+        collectionView.register(Cell.self)
         addSubview(collectionView)
         
         let views = ["collectionView": collectionView]
@@ -102,39 +89,27 @@ extension NumPad: UICollectionViewDataSource {
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: CollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         
         let position = positionForIndexPath(indexPath)
         
-        let title = delegate?.numPad(self, titleForButtonAtPosition: position)
-        cell.button.setTitle(title, forState: .Normal)
+        cell.button = dataSource?.numPad(self, buttonForPosition: position)
         
-        let titleColor = delegate?.numPad(self, titleColorForButtonAtPosition: position)
-        cell.button.setTitleColor(titleColor, forState: .Normal)
-        cell.button.tintColor = titleColor
-        
-        let font = delegate?.numPad(self, fontForButtonAtPosition: position)
-        cell.button.titleLabel?.font = font
-        
-        let image = delegate?.numPad(self, imageForButtonAtPosition: position)
-        cell.button.setImage(image, forState: .Normal)
-        
-        let backgroundColor = delegate?.numPad(self, backgroundColorForButtonAtPosition: position)
-        let backgroundColorImage = backgroundColor?.toImage()
-        cell.button.setBackgroundImage(backgroundColorImage, forState: .Normal)
-        
-        let backgroundHighlightedColor = delegate?.numPad(self, backgroundHighlightedColorForButtonAtPosition: position)
-        let backgroundHighlightedColorImage = backgroundHighlightedColor?.toImage()
-        cell.button.setBackgroundImage(backgroundHighlightedColorImage, forState: .Highlighted)
-        cell.button.setBackgroundImage(backgroundHighlightedColorImage, forState: .Selected)
+        cell.delegate = self
         
         return cell
     }
     
 }
 
-// MARK: - UICollectionViewDelegate
-extension NumPad: UICollectionViewDelegate {
+// MARK: - CellDelegate
+extension NumPad: CellDelegate {
+    
+    func cell(cell: Cell, buttonTapped button: UIButton) {
+        guard let indexPath = collectionView.indexPathForCell(cell) else { return }
+        let position = positionForIndexPath(indexPath)
+        delegate?.numPad(self, buttonTappedAtPosition: position)
+    }
     
 }
 
@@ -146,19 +121,26 @@ extension NumPad {
     }
     
     func numberOfRows() -> Int {
-        return delegate?.numberOfRowsInNumberPad(self) ?? 0
+        return dataSource?.numberOfRowsInNumberPad(self) ?? 0
     }
     
     func numberOfColumnsInRow(row: Int) -> Int {
-        return delegate?.numPad(self, numberOfColumnsInRow: row) ?? 0
+        return dataSource?.numPad(self, numberOfColumnsInRow: row) ?? 0
     }
     
 }
 
-// MARK: - CollectionViewCell
-class CollectionViewCell: UICollectionViewCell, ReusableView {
+// MARK: - CellDelegate
+protocol CellDelegate: class {
+    func cell(cell: Cell, buttonTapped button: UIButton)
+}
+
+// MARK: - Cell
+class Cell: UICollectionViewCell {
     
     let button = UIButton(type: .Custom)
+    
+    weak var delegate: CellDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -173,6 +155,7 @@ class CollectionViewCell: UICollectionViewCell, ReusableView {
     func setup() {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.textAlignment = .Center
+        button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
         contentView.addSubview(button)
         
         let views = ["button": button]
@@ -180,8 +163,13 @@ class CollectionViewCell: UICollectionViewCell, ReusableView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
     }
     
+    @IBAction func buttonTapped(button: UIButton) {
+        delegate?.cell(self, buttonTapped: button)
+    }
+    
 }
 
+// MARK: - ReusableView
 protocol ReusableView: class {
     static var defaultReuseIdentifier: String { get }
 }
@@ -192,6 +180,9 @@ extension ReusableView where Self: UIView {
     }
 }
 
+extension Cell: ReusableView {}
+
+// MARK: - Extensions
 extension UICollectionView {
     
     func register<T: UICollectionViewCell where T: ReusableView>(_: T.Type) {
