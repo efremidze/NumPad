@@ -1,17 +1,18 @@
 //
 //  ViewController.swift
-//  NumPad
+//  NumPadDemo
 //
-//  Created by Lasha Efremidze on 1/9/16.
+//  Created by Lasha Efremidze on 1/10/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 
 import UIKit
+import NumPad
 
 class ViewController: UIViewController {
     
     private let backgroundColor = UIColor(white: 0.9, alpha: 1)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +29,7 @@ class ViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[numPad]-10-|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[numPad]-20-|", options: [], metrics: nil, views: views))
     }
-
+    
 }
 
 // MARK: - NumPadDataSource

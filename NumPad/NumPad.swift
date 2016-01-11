@@ -27,7 +27,7 @@ public protocol NumPadDelegate: class {
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
 }
 
-extension NumPadDelegate {
+public extension NumPadDelegate {
     func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position) {}
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize { return size }
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
