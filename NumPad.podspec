@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     s.name             = "NumPad"
     s.version          = "0.1.0"
-    s.summary          = "Number Pad in Swift"
+    s.summary          = "Number Pad"
 
     s.homepage         = "https://github.com/efremidze/NumPad"
     s.license          = "MIT"
