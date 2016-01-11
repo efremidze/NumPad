@@ -36,7 +36,7 @@ extension NumPadDelegate {
 // MARK: - NumPad
 public class NumPad: UIView {
 
-    let collectionView = UICollectionView()
+    let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
     
     weak public var dataSource: NumPadDataSource?
     weak public var delegate: NumPadDelegate?
@@ -52,12 +52,10 @@ public class NumPad: UIView {
     }
     
     func setup() {
-        collectionView.collectionViewLayout = {
-            let layout = UICollectionViewFlowLayout()
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-            return layout
-        }()
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clearColor()
         collectionView.allowsSelection = false
@@ -141,6 +139,12 @@ extension NumPad: CellDelegate {
 // MARK: - Helpers
 extension NumPad {
     
+    public func indexOfPosition(position: Position) -> Int {
+        var index = (0..<position.row).map { numberOfColumnsInRow($0) }.reduce(0, combine: +)
+        index += position.column
+        return index
+    }
+    
     func positionForIndexPath(indexPath: NSIndexPath) -> Position {
         return Position(row: indexPath.section, column: indexPath.item)
     }
@@ -219,29 +223,6 @@ extension UICollectionView {
             fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
         }
         return cell
-    }
-    
-}
-
-extension UIColor {
-    
-    func toImage() -> UIImage {
-        return UIImage(color: self)
-    }
-    
-}
-
-extension UIImage {
-    
-    convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        var rect = CGRectZero
-        rect.size = size
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        self.init(CGImage: image.CGImage!)
     }
     
 }
