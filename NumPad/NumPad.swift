@@ -137,12 +137,26 @@ extension NumPad: CellDelegate {
 }
 
 // MARK: - Helpers
-extension NumPad {
+public extension NumPad {
     
-    public func indexOfPosition(position: Position) -> Int {
+    func indexForPosition(position: Position) -> Int {
         var index = (0..<position.row).map { numberOfColumnsInRow($0) }.reduce(0, combine: +)
         index += position.column
         return index
+    }
+    
+    func buttonForPosition(position: Position) -> UIButton? {
+        let indexPath = indexPathForPosition(position)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        return (cell as? Cell)?.button
+    }
+    
+}
+
+extension NumPad {
+    
+    func indexPathForPosition(position: Position) -> NSIndexPath {
+        return NSIndexPath(forItem: position.column, inSection: position.row)
     }
     
     func positionForIndexPath(indexPath: NSIndexPath) -> Position {

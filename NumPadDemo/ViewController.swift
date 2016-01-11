@@ -49,7 +49,7 @@ extension ViewController: NumPadDataSource {
 extension ViewController: NumPadDelegate {
     
     func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position) {
-        let index = numPad.indexOfPosition(position)
+        let index = numPad.indexForPosition(position)
         
         // title
         var title = "\(index + 1)"
