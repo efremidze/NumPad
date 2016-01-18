@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BA149861C4C82A100DCCE71 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD00E021C43358D00120FD3 /* NumPad.framework */; };
+		8BA149871C4C82A100DCCE71 /* NumPad.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD00E021C43358D00120FD3 /* NumPad.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BB2ED791C4353B9003C37EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2ED781C4353B9003C37EA /* AppDelegate.swift */; };
 		8BB2ED7B1C4353B9003C37EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2ED7A1C4353B9003C37EA /* ViewController.swift */; };
 		8BB2ED7E1C4353B9003C37EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2ED7C1C4353B9003C37EA /* Main.storyboard */; };
@@ -19,6 +21,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8BA149881C4C82A100DCCE71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BD00DF91C43358D00120FD3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8BD00E011C43358D00120FD3;
+			remoteInfo = NumPad;
+		};
 		8BD00E0E1C43358D00120FD3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8BD00DF91C43358D00120FD3 /* Project object */;
@@ -27,6 +36,20 @@
 			remoteInfo = NumPad;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8BA1498A1C4C82A100DCCE71 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8BA149871C4C82A100DCCE71 /* NumPad.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		8BB2ED761C4353B9003C37EA /* NumPadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumPadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BA149861C4C82A100DCCE71 /* NumPad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,10 +168,12 @@
 				8BB2ED721C4353B9003C37EA /* Sources */,
 				8BB2ED731C4353B9003C37EA /* Frameworks */,
 				8BB2ED741C4353B9003C37EA /* Resources */,
+				8BA1498A1C4C82A100DCCE71 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8BA149891C4C82A100DCCE71 /* PBXTargetDependency */,
 			);
 			name = NumPadDemo;
 			productName = NumPadDemo;
@@ -287,6 +313,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8BA149891C4C82A100DCCE71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8BD00E011C43358D00120FD3 /* NumPad */;
+			targetProxy = 8BA149881C4C82A100DCCE71 /* PBXContainerItemProxy */;
+		};
 		8BD00E0F1C43358D00120FD3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8BD00E011C43358D00120FD3 /* NumPad */;
@@ -318,6 +349,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = NumPadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -330,6 +362,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = NumPadDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -492,6 +525,7 @@
 				8BB2ED861C4353B9003C37EA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8BD00DFC1C43358D00120FD3 /* Build configuration list for PBXProject "NumPad" */ = {
 			isa = XCConfigurationList;
