@@ -218,7 +218,7 @@ protocol ReusableView: class {
 
 extension ReusableView where Self: UIView {
     static var defaultReuseIdentifier: String {
-        return NSStringFromClass(self)
+        return String(self)
     }
 }
 
