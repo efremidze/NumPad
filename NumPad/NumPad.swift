@@ -22,13 +22,13 @@ public protocol NumPadDataSource: class {
 
 // MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
-    func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position)
+    func numPad(numPad: NumPad, willDisplayButton button: UIButton, forPosition position: Position)
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
 }
 
 public extension NumPadDelegate {
-    func numPad(numPad: NumPad, configureButton button: UIButton, forPosition position: Position) {}
+    func numPad(numPad: NumPad, willDisplayButton button: UIButton, forPosition position: Position) {}
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize { return size }
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {}
 }
@@ -103,7 +103,7 @@ extension NumPad: UICollectionViewDelegate {
     public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
         guard let button = (cell as? Cell)?.button else { return }
         let position = positionForIndexPath(indexPath)
-        delegate?.numPad(self, configureButton: button, forPosition: position)
+        delegate?.numPad(self, willDisplayButton: button, forPosition: position)
     }
     
 }
@@ -219,7 +219,7 @@ protocol ReusableView: class {
 
 extension ReusableView where Self: UIView {
     static var defaultReuseIdentifier: String {
-        return String(self)
+        return NSStringFromClass(self)
     }
 }
 
