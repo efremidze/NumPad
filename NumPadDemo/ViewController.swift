@@ -13,21 +13,44 @@ class ViewController: UIViewController {
     
     private let backgroundColor = UIColor(white: 0.9, alpha: 1)
     
+    private let containerView = UIView()
+    private let textField = UITextField()
+    private let numPad = NumPad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let numPad = NumPad()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.layer.borderColor = backgroundColor.CGColor
+        containerView.layer.borderWidth = 1
+        view.addSubview(containerView)
+        
+        do {
+            let views = ["containerView": containerView]
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[containerView]-10-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[containerView]-10-|", options: [], metrics: nil, views: views))
+        }
+        
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.textAlignment = .Right
+        textField.textColor = UIColor(white: 0.3, alpha: 1)
+        textField.font = .systemFontOfSize(40)
+        textField.placeholder = "0"
+        textField.enabled = false
+        containerView.addSubview(textField)
+        
         numPad.translatesAutoresizingMaskIntoConstraints = false
         numPad.backgroundColor = backgroundColor
-        numPad.layer.borderColor = backgroundColor.CGColor
-        numPad.layer.borderWidth = 1
         numPad.dataSource = self
         numPad.delegate = self
-        view.addSubview(numPad)
+        containerView.addSubview(numPad)
         
-        let views = ["numPad": numPad]
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[numPad]-10-|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[numPad]-20-|", options: [], metrics: nil, views: views))
+        do {
+            let views = ["textField": textField, "numPad": numPad]
+            containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textField]-20-|", options: [], metrics: nil, views: views))
+            containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[numPad]|", options: [], metrics: nil, views: views))
+            containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[textField(==120)][numPad]|", options: [], metrics: nil, views: views))
+        }
     }
     
 }
@@ -79,10 +102,29 @@ extension ViewController: NumPadDelegate {
         button.setBackgroundImage(image, forState: .Selected)
     }
     
+    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
+        let index = numPad.indexForPosition(position)
+        if index == 9 {
+            textField.text = nil
+        } else {
+            let button = numPad.buttonForPosition(position)!
+            let string = (textField.text ?? "") + button.titleForState(.Normal)!
+            let number = NSNumberFormatter.sharedInstance.numberFromString(string)!
+            textField.text = NSNumberFormatter.sharedInstance.stringFromNumber(number)
+        }
+    }
+    
 }
 
 // MARK: - Extensions
-extension UIColor {
+
+private extension NSNumberFormatter {
+    
+    @nonobjc static let sharedInstance = NSNumberFormatter()
+    
+}
+
+private extension UIColor {
     
     func toImage() -> UIImage {
         return UIImage(color: self)
@@ -90,7 +132,7 @@ extension UIColor {
     
 }
 
-extension UIImage {
+private extension UIImage {
     
     convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         var rect = CGRectZero

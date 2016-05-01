@@ -197,7 +197,7 @@ class Cell: UICollectionViewCell {
     func setup() {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.textAlignment = .Center
-        button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(buttonTapped), forControlEvents: .TouchUpInside)
         contentView.addSubview(button)
         
         let views = ["button": button]
