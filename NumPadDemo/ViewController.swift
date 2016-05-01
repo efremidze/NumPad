@@ -108,21 +108,18 @@ extension ViewController: NumPadDelegate {
             textField.text = nil
         } else {
             let button = numPad.buttonForPosition(position)!
-            let string = (textField.text ?? "") + button.titleForState(.Normal)!
-            let number = NSNumberFormatter.sharedInstance.numberFromString(string)!
-            textField.text = NSNumberFormatter.sharedInstance.stringFromNumber(number)
+            let string = (textField.text ?? "") + (button.titleForState(.Normal) ?? "")
+            if Int(string) == 0 {
+                textField.text = nil
+            } else {
+                textField.text = string
+            }
         }
     }
     
 }
 
 // MARK: - Extensions
-
-private extension NSNumberFormatter {
-    
-    @nonobjc static let sharedInstance = NSNumberFormatter()
-    
-}
 
 private extension UIColor {
     
