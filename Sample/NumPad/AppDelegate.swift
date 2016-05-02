@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  NumPadDemo
+//  NumPad
 //
-//  Created by Lasha Efremidze on 1/10/16.
+//  Created by Lasha Efremidze on 5/1/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 

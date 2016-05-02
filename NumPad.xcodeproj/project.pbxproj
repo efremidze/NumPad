@@ -7,76 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BA149861C4C82A100DCCE71 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD00E021C43358D00120FD3 /* NumPad.framework */; };
-		8BA149871C4C82A100DCCE71 /* NumPad.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD00E021C43358D00120FD3 /* NumPad.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8BB2ED791C4353B9003C37EA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2ED781C4353B9003C37EA /* AppDelegate.swift */; };
-		8BB2ED7B1C4353B9003C37EA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB2ED7A1C4353B9003C37EA /* ViewController.swift */; };
-		8BB2ED7E1C4353B9003C37EA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2ED7C1C4353B9003C37EA /* Main.storyboard */; };
-		8BB2ED801C4353B9003C37EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2ED7F1C4353B9003C37EA /* Assets.xcassets */; };
-		8BB2ED831C4353B9003C37EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BB2ED811C4353B9003C37EA /* LaunchScreen.storyboard */; };
 		8BD00E061C43358D00120FD3 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BD00E051C43358D00120FD3 /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8BD00E0D1C43358D00120FD3 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD00E021C43358D00120FD3 /* NumPad.framework */; };
-		8BD00E121C43358D00120FD3 /* NumPadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD00E111C43358D00120FD3 /* NumPadTests.swift */; };
 		8BD00E1D1C4335B000120FD3 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD00E1C1C4335B000120FD3 /* NumPad.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8BA149881C4C82A100DCCE71 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8BD00DF91C43358D00120FD3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8BD00E011C43358D00120FD3;
-			remoteInfo = NumPad;
-		};
-		8BD00E0E1C43358D00120FD3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8BD00DF91C43358D00120FD3 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8BD00E011C43358D00120FD3;
-			remoteInfo = NumPad;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8BA1498A1C4C82A100DCCE71 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				8BA149871C4C82A100DCCE71 /* NumPad.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		8BB2ED761C4353B9003C37EA /* NumPadDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumPadDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BB2ED781C4353B9003C37EA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8BB2ED7A1C4353B9003C37EA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8BB2ED7D1C4353B9003C37EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8BB2ED7F1C4353B9003C37EA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8BB2ED821C4353B9003C37EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8BB2ED841C4353B9003C37EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD00E021C43358D00120FD3 /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD00E051C43358D00120FD3 /* NumPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumPad.h; sourceTree = "<group>"; };
-		8BD00E071C43358D00120FD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BD00E0C1C43358D00120FD3 /* NumPadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NumPadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD00E111C43358D00120FD3 /* NumPadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPadTests.swift; sourceTree = "<group>"; };
-		8BD00E131C43358D00120FD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8BD00E1C1C4335B000120FD3 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
+		8BD00E051C43358D00120FD3 /* NumPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NumPad.h; path = Sources/NumPad.h; sourceTree = "<group>"; };
+		8BD00E071C43358D00120FD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Support/Info.plist; sourceTree = "<group>"; };
+		8BD00E1C1C4335B000120FD3 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumPad.swift; path = Sources/NumPad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8BB2ED731C4353B9003C37EA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BA149861C4C82A100DCCE71 /* NumPad.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8BD00DFE1C43358D00120FD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -84,36 +26,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BD00E091C43358D00120FD3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BD00E0D1C43358D00120FD3 /* NumPad.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8BB2ED771C4353B9003C37EA /* NumPadDemo */ = {
-			isa = PBXGroup;
-			children = (
-				8BB2ED781C4353B9003C37EA /* AppDelegate.swift */,
-				8BB2ED7A1C4353B9003C37EA /* ViewController.swift */,
-				8BB2ED7C1C4353B9003C37EA /* Main.storyboard */,
-				8BB2ED7F1C4353B9003C37EA /* Assets.xcassets */,
-				8BB2ED811C4353B9003C37EA /* LaunchScreen.storyboard */,
-				8BB2ED841C4353B9003C37EA /* Info.plist */,
-			);
-			path = NumPadDemo;
-			sourceTree = "<group>";
-		};
 		8BD00DF81C43358D00120FD3 = {
 			isa = PBXGroup;
 			children = (
 				8BD00E041C43358D00120FD3 /* NumPad */,
-				8BD00E101C43358D00120FD3 /* NumPadTests */,
-				8BB2ED771C4353B9003C37EA /* NumPadDemo */,
 				8BD00E031C43358D00120FD3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -122,8 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				8BD00E021C43358D00120FD3 /* NumPad.framework */,
-				8BD00E0C1C43358D00120FD3 /* NumPadTests.xctest */,
-				8BB2ED761C4353B9003C37EA /* NumPadDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -136,15 +53,6 @@
 				8BD00E1C1C4335B000120FD3 /* NumPad.swift */,
 			);
 			path = NumPad;
-			sourceTree = "<group>";
-		};
-		8BD00E101C43358D00120FD3 /* NumPadTests */ = {
-			isa = PBXGroup;
-			children = (
-				8BD00E111C43358D00120FD3 /* NumPadTests.swift */,
-				8BD00E131C43358D00120FD3 /* Info.plist */,
-			);
-			path = NumPadTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,25 +69,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8BB2ED751C4353B9003C37EA /* NumPadDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8BB2ED871C4353B9003C37EA /* Build configuration list for PBXNativeTarget "NumPadDemo" */;
-			buildPhases = (
-				8BB2ED721C4353B9003C37EA /* Sources */,
-				8BB2ED731C4353B9003C37EA /* Frameworks */,
-				8BB2ED741C4353B9003C37EA /* Resources */,
-				8BA1498A1C4C82A100DCCE71 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8BA149891C4C82A100DCCE71 /* PBXTargetDependency */,
-			);
-			name = NumPadDemo;
-			productName = NumPadDemo;
-			productReference = 8BB2ED761C4353B9003C37EA /* NumPadDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
 		8BD00E011C43358D00120FD3 /* NumPad */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BD00E161C43358D00120FD3 /* Build configuration list for PBXNativeTarget "NumPad" */;
@@ -198,24 +87,6 @@
 			productReference = 8BD00E021C43358D00120FD3 /* NumPad.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8BD00E0B1C43358D00120FD3 /* NumPadTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8BD00E191C43358D00120FD3 /* Build configuration list for PBXNativeTarget "NumPadTests" */;
-			buildPhases = (
-				8BD00E081C43358D00120FD3 /* Sources */,
-				8BD00E091C43358D00120FD3 /* Frameworks */,
-				8BD00E0A1C43358D00120FD3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8BD00E0F1C43358D00120FD3 /* PBXTargetDependency */,
-			);
-			name = NumPadTests;
-			productName = NumPadTests;
-			productReference = 8BD00E0C1C43358D00120FD3 /* NumPadTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -226,13 +97,7 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Lasha Efremidze";
 				TargetAttributes = {
-					8BB2ED751C4353B9003C37EA = {
-						CreatedOnToolsVersion = 7.2;
-					};
 					8BD00E011C43358D00120FD3 = {
-						CreatedOnToolsVersion = 7.2;
-					};
-					8BD00E0B1C43358D00120FD3 = {
 						CreatedOnToolsVersion = 7.2;
 					};
 				};
@@ -251,31 +116,12 @@
 			projectRoot = "";
 			targets = (
 				8BD00E011C43358D00120FD3 /* NumPad */,
-				8BD00E0B1C43358D00120FD3 /* NumPadTests */,
-				8BB2ED751C4353B9003C37EA /* NumPadDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8BB2ED741C4353B9003C37EA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BB2ED831C4353B9003C37EA /* LaunchScreen.storyboard in Resources */,
-				8BB2ED801C4353B9003C37EA /* Assets.xcassets in Resources */,
-				8BB2ED7E1C4353B9003C37EA /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8BD00E001C43358D00120FD3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8BD00E0A1C43358D00120FD3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -285,15 +131,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8BB2ED721C4353B9003C37EA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BB2ED7B1C4353B9003C37EA /* ViewController.swift in Sources */,
-				8BB2ED791C4353B9003C37EA /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8BD00DFD1C43358D00120FD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -302,75 +139,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BD00E081C43358D00120FD3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8BD00E121C43358D00120FD3 /* NumPadTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		8BA149891C4C82A100DCCE71 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8BD00E011C43358D00120FD3 /* NumPad */;
-			targetProxy = 8BA149881C4C82A100DCCE71 /* PBXContainerItemProxy */;
-		};
-		8BD00E0F1C43358D00120FD3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8BD00E011C43358D00120FD3 /* NumPad */;
-			targetProxy = 8BD00E0E1C43358D00120FD3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8BB2ED7C1C4353B9003C37EA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BB2ED7D1C4353B9003C37EA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8BB2ED811C4353B9003C37EA /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8BB2ED821C4353B9003C37EA /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		8BB2ED851C4353B9003C37EA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = NumPadDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPadDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		8BB2ED861C4353B9003C37EA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				INFOPLIST_FILE = NumPadDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPadDemo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 		8BD00E141C43358D00120FD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -468,7 +239,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = NumPad/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPad;
@@ -486,7 +257,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = NumPad/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPad;
@@ -495,38 +266,9 @@
 			};
 			name = Release;
 		};
-		8BD00E1A1C43358D00120FD3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = NumPadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPadTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		8BD00E1B1C43358D00120FD3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = NumPadTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPadTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8BB2ED871C4353B9003C37EA /* Build configuration list for PBXNativeTarget "NumPadDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8BB2ED851C4353B9003C37EA /* Debug */,
-				8BB2ED861C4353B9003C37EA /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		8BD00DFC1C43358D00120FD3 /* Build configuration list for PBXProject "NumPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -541,15 +283,6 @@
 			buildConfigurations = (
 				8BD00E171C43358D00120FD3 /* Debug */,
 				8BD00E181C43358D00120FD3 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8BD00E191C43358D00120FD3 /* Build configuration list for PBXNativeTarget "NumPadTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8BD00E1A1C43358D00120FD3 /* Debug */,
-				8BD00E1B1C43358D00120FD3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
