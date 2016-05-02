@@ -34,7 +34,7 @@ public extension NumPadDelegate {
 
 // MARK: - NumPad
 public class NumPad: UIView {
-
+    
     let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
     
     public weak var dataSource: NumPadDataSource?
@@ -61,7 +61,7 @@ public class NumPad: UIView {
         collectionView.scrollEnabled = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(Cell.self)
+        collectionView.registerClass(Cell.self, forCellWithReuseIdentifier: String(Cell))
         addSubview(collectionView)
         
         let views = ["collectionView": collectionView]
@@ -90,9 +90,11 @@ extension NumPad: UICollectionViewDataSource {
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let position = positionForIndexPath(indexPath)
-        let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.delegate = self
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
         cell.button = dataSource?.numPad(self, buttonForPosition: position) ?? UIButton()
+        cell.buttonTapped = { [unowned self] _ in
+            self.delegate?.numPad(self, buttonTappedAtPosition: position)
+        }
         return cell
     }
     
@@ -115,17 +117,6 @@ extension NumPad: UICollectionViewDelegateFlowLayout {
     
 }
 
-// MARK: - CellDelegate
-extension NumPad: CellDelegate {
-    
-    func cell(cell: Cell, buttonTapped button: UIButton) {
-        guard let indexPath = collectionView.indexPathForCell(cell) else { return }
-        let position = positionForIndexPath(indexPath)
-        delegate?.numPad(self, buttonTappedAtPosition: position)
-    }
-    
-}
-
 // MARK: - Helpers
 public extension NumPad {
     
@@ -143,7 +134,7 @@ public extension NumPad {
     
 }
 
-extension NumPad {
+private extension NumPad {
     
     func indexPathForPosition(position: Position) -> NSIndexPath {
         return NSIndexPath(forItem: position.column, inSection: position.row)
@@ -163,18 +154,13 @@ extension NumPad {
     
 }
 
-// MARK: - CellDelegate
-protocol CellDelegate: class {
-    func cell(cell: Cell, buttonTapped button: UIButton)
-}
-
 // MARK: - Cell
 class Cell: UICollectionViewCell {
     
     var button: UIButton! {
         didSet {
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.addTarget(self, action: #selector(buttonTapped), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(_buttonTapped), forControlEvents: .TouchUpInside)
             contentView.addSubview(button)
             
             let views = ["button": button]
@@ -183,39 +169,10 @@ class Cell: UICollectionViewCell {
         }
     }
     
-    weak var delegate: CellDelegate?
+    var buttonTapped: (UIButton -> ())?
     
-    @IBAction func buttonTapped(button: UIButton) {
-        delegate?.cell(self, buttonTapped: button)
-    }
-    
-}
-
-// MARK: - ReusableView
-protocol ReusableView: class {
-    static var defaultReuseIdentifier: String { get }
-}
-
-extension ReusableView where Self: UIView {
-    static var defaultReuseIdentifier: String {
-        return String(self)
-    }
-}
-
-extension Cell: ReusableView {}
-
-// MARK: - Extensions
-extension UICollectionView {
-    
-    func register<T: UICollectionViewCell where T: ReusableView>(_: T.Type) {
-        registerClass(T.self, forCellWithReuseIdentifier: T.defaultReuseIdentifier)
-    }
-    
-    func dequeueReusableCell<T: UICollectionViewCell where T: ReusableView>(forIndexPath indexPath: NSIndexPath) -> T {
-        guard let cell = dequeueReusableCellWithReuseIdentifier(T.defaultReuseIdentifier, forIndexPath: indexPath) as? T else {
-            fatalError("Could not dequeue cell with identifier: \(T.defaultReuseIdentifier)")
-        }
-        return cell
+    @IBAction func _buttonTapped(button: UIButton) {
+        buttonTapped?(button)
     }
     
 }
