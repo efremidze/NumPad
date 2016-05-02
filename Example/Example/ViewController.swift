@@ -1,12 +1,13 @@
 //
 //  ViewController.swift
-//  NumPad
+//  Example
 //
-//  Created by Lasha Efremidze on 5/1/16.
+//  Created by Lasha Efremidze on 5/2/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 
 import UIKit
+import NumPad
 
 class ViewController: UIViewController {
     
@@ -57,7 +58,7 @@ class ViewController: UIViewController {
 // MARK: - NumPadDataSource
 extension ViewController: NumPadDataSource {
     
-    func numberOfRowsInNumberPad(numPad: NumPad) -> Int {
+    func numberOfRowsInNumPad(numPad: NumPad) -> Int {
         return 4
     }
     
@@ -65,13 +66,10 @@ extension ViewController: NumPadDataSource {
         return 3
     }
     
-}
-
-// MARK: - NumPadDelegate
-extension ViewController: NumPadDelegate {
-    
-    func numPad(numPad: NumPad, willDisplayButton button: UIButton, forPosition position: Position) {
+    func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton {
         let index = numPad.indexForPosition(position)
+        
+        let button = UIButton(type: .Custom)
         
         // title
         var title = "\(index + 1)"
@@ -93,13 +91,23 @@ extension ViewController: NumPadDelegate {
         // font
         button.titleLabel?.font = UIFont.systemFontOfSize(40)
         
+        // alignment
+        button.titleLabel?.textAlignment = .Center
+        
         // backgroundImage
         var image = UIColor.whiteColor().toImage()
         button.setBackgroundImage(image, forState: .Normal)
         image = backgroundColor.toImage()
         button.setBackgroundImage(image, forState: .Highlighted)
         button.setBackgroundImage(image, forState: .Selected)
+        
+        return button
     }
+    
+}
+
+// MARK: - NumPadDelegate
+extension ViewController: NumPadDelegate {
     
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
         let index = numPad.indexForPosition(position)

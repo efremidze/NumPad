@@ -16,13 +16,13 @@ public struct Position {
 
 // MARK: - NumPadDataSource
 public protocol NumPadDataSource: class {
-    func numberOfRowsInNumberPad(numPad: NumPad) -> Int
+    func numberOfRowsInNumPad(numPad: NumPad) -> Int
     func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
+    func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton
 }
 
 // MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
-    func numPad(numPad: NumPad, willDisplayButton button: UIButton, forPosition position: Position)
     func numPad(numPad: NumPad, sizeForButtonAtPosition position: Position, defaultSize size: CGSize) -> CGSize
     func numPad(numPad: NumPad, buttonTappedAtPosition position: Position)
 }
@@ -37,8 +37,8 @@ public class NumPad: UIView {
 
     let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: UICollectionViewFlowLayout())
     
-    weak public var dataSource: NumPadDataSource?
-    weak public var delegate: NumPadDelegate?
+    public weak var dataSource: NumPadDataSource?
+    public weak var delegate: NumPadDelegate?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -89,20 +89,11 @@ extension NumPad: UICollectionViewDataSource {
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let position = positionForIndexPath(indexPath)
         let cell: Cell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         cell.delegate = self
+        cell.button = dataSource?.numPad(self, buttonForPosition: position) ?? UIButton()
         return cell
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegate
-extension NumPad: UICollectionViewDelegate {
-
-    public func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-        guard let button = (cell as? Cell)?.button else { return }
-        let position = positionForIndexPath(indexPath)
-        delegate?.numPad(self, willDisplayButton: button, forPosition: position)
     }
     
 }
@@ -163,7 +154,7 @@ extension NumPad {
     }
     
     func numberOfRows() -> Int {
-        return dataSource?.numberOfRowsInNumberPad(self) ?? 0
+        return dataSource?.numberOfRowsInNumPad(self) ?? 0
     }
     
     func numberOfColumnsInRow(row: Int) -> Int {
@@ -180,30 +171,19 @@ protocol CellDelegate: class {
 // MARK: - Cell
 class Cell: UICollectionViewCell {
     
-    let button = UIButton(type: .Custom)
+    var button: UIButton! {
+        didSet {
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.addTarget(self, action: #selector(buttonTapped), forControlEvents: .TouchUpInside)
+            contentView.addSubview(button)
+            
+            let views = ["button": button]
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-1-[button]|", options: [], metrics: nil, views: views))
+            contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
+        }
+    }
     
     weak var delegate: CellDelegate?
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-    
-    func setup() {
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.textAlignment = .Center
-        button.addTarget(self, action: #selector(buttonTapped), forControlEvents: .TouchUpInside)
-        contentView.addSubview(button)
-        
-        let views = ["button": button]
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-1-[button]|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
-    }
     
     @IBAction func buttonTapped(button: UIButton) {
         delegate?.cell(self, buttonTapped: button)

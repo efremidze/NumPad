@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BDB9B721CD72148008AA850 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BDB9B6F1CD72148008AA850 /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8BDB9B731CD72148008AA850 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDB9B701CD72148008AA850 /* NumPad.swift */; };
+		8B6C72F31CD73C130003F8C5 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B6C72F01CD73C130003F8C5 /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B6C72F41CD73C130003F8C5 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6C72F11CD73C130003F8C5 /* NumPad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8B5617A31CD720AF0058473C /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BDB9B6F1CD72148008AA850 /* NumPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumPad.h; sourceTree = "<group>"; };
-		8BDB9B701CD72148008AA850 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
-		8BDB9B711CD72148008AA850 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Support/Info.plist; sourceTree = SOURCE_ROOT; };
+		8B6C72EF1CD73C130003F8C5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B6C72F01CD73C130003F8C5 /* NumPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumPad.h; sourceTree = "<group>"; };
+		8B6C72F11CD73C130003F8C5 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,9 +48,9 @@
 		8B5617A51CD720AF0058473C /* NumPad */ = {
 			isa = PBXGroup;
 			children = (
-				8BDB9B711CD72148008AA850 /* Info.plist */,
-				8BDB9B6F1CD72148008AA850 /* NumPad.h */,
-				8BDB9B701CD72148008AA850 /* NumPad.swift */,
+				8B6C72EF1CD73C130003F8C5 /* Info.plist */,
+				8B6C72F01CD73C130003F8C5 /* NumPad.h */,
+				8B6C72F11CD73C130003F8C5 /* NumPad.swift */,
 			);
 			name = NumPad;
 			path = Sources;
@@ -63,7 +63,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDB9B721CD72148008AA850 /* NumPad.h in Headers */,
+				8B6C72F31CD73C130003F8C5 /* NumPad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,7 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BDB9B731CD72148008AA850 /* NumPad.swift in Sources */,
+				8B6C72F41CD73C130003F8C5 /* NumPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +240,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPad;
@@ -258,7 +258,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Support/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.efremidze.NumPad;

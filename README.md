@@ -1,18 +1,16 @@
 # NumPad
 
-![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)
 [![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
 [![License](https://img.shields.io/cocoapods/l/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
-[![Platform](https://img.shields.io/cocoapods/p/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
+![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Build Status](https://travis-ci.org/efremidze/NumPad.svg)](https://travis-ci.org/efremidze/NumPad)
-[![Twitter](https://img.shields.io/badge/Twitter-@lasha_-blue.svg?style=flat)](http://twitter.com/lasha_)
 
 ## Overview
 
-`NumPad` is a number pad inspired by Square's design.
+Number Pad inspired by Square's design.
 
-![NumPad Screenshot](Screenshots/example.gif)
+![Demo](demo.gif)
 
 ```
 $ pod try NumPad
@@ -24,18 +22,18 @@ $ pod try NumPad
 * Xcode 7
 
 ## Installation
-* **CocoaPods**
+###CocoaPods
   ```ruby
   use_frameworks!
   pod "NumPad"
   ```
 
-* **Carthage**
+###Carthage
   ```ruby
   github "efremidze/NumPad"
   ```
 
-* **Swift Package Manager**
+###Swift Package Manager
   ```swift
   import PackageDescription
 
@@ -47,9 +45,6 @@ $ pod try NumPad
   )
   ```
 
-* **Manually**
-  * To install manually the NumPad in an app, just drag the `NumPad/NumPad.swift` file into your project.
-
 ## Usage
 
 ```swift
@@ -57,26 +52,32 @@ let numPad = NumPad()
 numPad.dataSource = self
 numPad.delegate = self
 addSubview(numPad)
+```
 
-// NumPadDataSource
+DataSource Functions 
+```swift
 func numberOfRowsInNumberPad(numPad: NumPad) -> Int {
-    return 4
+    // numbers of rows
 }
 
 func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int {
-    return 3
+    // numbers of columns
 }
 
-// NumPadDelegate
-func numPad(numPad: NumPad, willDisplayButton button: UIButton, forPosition position: Position) {
-    let index = numPad.indexForPosition(position)
-    button.setTitle("\(index + 1)", forState: .Normal)
+func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton {
+    // configure button
 }
+```
 
+Delegate Functions 
+```swift
 func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
-    // handle tap
+    // handle button tap
 }
 
+func numPad(numPad: NumPad.NumPad, sizeForButtonAtPosition position: NumPad.Position, defaultSize size: CGSize) -> CGSize {
+    // custom button sizing
+}
 ```
 
 ## Contributions
