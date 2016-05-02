@@ -1,9 +1,12 @@
 # NumPad
 
+![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)
+[![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
+[![License](https://img.shields.io/cocoapods/l/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
+[![Platform](https://img.shields.io/cocoapods/p/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Build Status](https://travis-ci.org/efremidze/NumPad.svg)](https://travis-ci.org/efremidze/NumPad)
 [![Twitter](https://img.shields.io/badge/Twitter-@lasha_-blue.svg?style=flat)](http://twitter.com/lasha_)
-[![CocoaPods](https://img.shields.io/cocoapods/p/NumPad.svg)](https://cocoapods.org/pods/NumPad)
-[![CocoaPods](https://img.shields.io/cocoapods/v/NumPad.svg)](http://cocoapods.org/pods/NumPad)
-[![Travis](https://img.shields.io/travis/efremidze/NumPad.svg)](https://travis-ci.org/efremidze/NumPad)
 
 ## Overview
 
@@ -21,14 +24,31 @@ $ pod try NumPad
 * Xcode 7
 
 ## Installation
+* **CocoaPods**
+  ```ruby
+  use_frameworks!
+  pod "NumPad"
+  ```
 
-NumPad is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+* **Carthage**
+  ```ruby
+  github "efremidze/NumPad"
+  ```
 
-```ruby
-use_frameworks!
-pod 'NumPad'
-```
+* **Swift Package Manager**
+  ```swift
+  import PackageDescription
+
+  let package = Package(
+    name: "App",
+    dependencies: [
+      .Package(url: "https://github.com/efremidze/NumPad.git", majorVersion: 1)
+    ]
+  )
+  ```
+
+* **Manually**
+  * To install manually the NumPad in an app, just drag the `NumPad/NumPad.swift` file into your project.
 
 ## Usage
 
