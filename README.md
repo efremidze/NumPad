@@ -79,8 +79,6 @@ func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
 
 ```
 
-See the `NumPadDemo` project for example usage.
-
 ## Contributions
 
 Contributions are totally welcome.
