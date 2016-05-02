@@ -54,7 +54,7 @@ numPad.delegate = self
 addSubview(numPad)
 ```
 
-DataSource Functions 
+### DataSource
 ```swift
 func numberOfRowsInNumberPad(numPad: NumPad) -> Int {
     // numbers of rows
@@ -65,11 +65,11 @@ func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int {
 }
 
 func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton {
-    // configure button
+    // configured button
 }
 ```
 
-Delegate Functions 
+### Delegate
 ```swift
 func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
     // handle button tap
