@@ -7,7 +7,7 @@
 
 ## Overview
 
-`NumPad` is an number pad inspired by Square's design.
+`NumPad` is a number pad inspired by Square's design.
 
 ![NumPad Screenshot](Screenshots/example.gif)
 
