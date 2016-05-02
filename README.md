@@ -40,7 +40,7 @@ $ pod try NumPad
   import PackageDescription
 
   let package = Package(
-    name: "App",
+    name: "NumPad",
     dependencies: [
       .Package(url: "https://github.com/efremidze/NumPad.git", majorVersion: 1)
     ]

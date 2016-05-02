@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BD00E061C43358D00120FD3 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BD00E051C43358D00120FD3 /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8BD00E1D1C4335B000120FD3 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD00E1C1C4335B000120FD3 /* NumPad.swift */; };
+		8BDB9B721CD72148008AA850 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BDB9B6F1CD72148008AA850 /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8BDB9B731CD72148008AA850 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDB9B701CD72148008AA850 /* NumPad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8BD00E021C43358D00120FD3 /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BD00E051C43358D00120FD3 /* NumPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NumPad.h; path = Sources/NumPad.h; sourceTree = "<group>"; };
-		8BD00E071C43358D00120FD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = Support/Info.plist; sourceTree = "<group>"; };
-		8BD00E1C1C4335B000120FD3 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumPad.swift; path = Sources/NumPad.swift; sourceTree = "<group>"; };
+		8B5617A31CD720AF0058473C /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BDB9B6F1CD72148008AA850 /* NumPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumPad.h; sourceTree = "<group>"; };
+		8BDB9B701CD72148008AA850 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
+		8BDB9B711CD72148008AA850 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Support/Info.plist; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8BD00DFE1C43358D00120FD3 /* Frameworks */ = {
+		8B56179F1CD720AF0058473C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,54 +29,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8BD00DF81C43358D00120FD3 = {
+		8B5617991CD720AF0058473C = {
 			isa = PBXGroup;
 			children = (
-				8BD00E041C43358D00120FD3 /* NumPad */,
-				8BD00E031C43358D00120FD3 /* Products */,
+				8B5617A51CD720AF0058473C /* NumPad */,
+				8B5617A41CD720AF0058473C /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8BD00E031C43358D00120FD3 /* Products */ = {
+		8B5617A41CD720AF0058473C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8BD00E021C43358D00120FD3 /* NumPad.framework */,
+				8B5617A31CD720AF0058473C /* NumPad.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8BD00E041C43358D00120FD3 /* NumPad */ = {
+		8B5617A51CD720AF0058473C /* NumPad */ = {
 			isa = PBXGroup;
 			children = (
-				8BD00E071C43358D00120FD3 /* Info.plist */,
-				8BD00E051C43358D00120FD3 /* NumPad.h */,
-				8BD00E1C1C4335B000120FD3 /* NumPad.swift */,
+				8BDB9B711CD72148008AA850 /* Info.plist */,
+				8BDB9B6F1CD72148008AA850 /* NumPad.h */,
+				8BDB9B701CD72148008AA850 /* NumPad.swift */,
 			);
-			path = NumPad;
+			name = NumPad;
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8BD00DFF1C43358D00120FD3 /* Headers */ = {
+		8B5617A01CD720AF0058473C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD00E061C43358D00120FD3 /* NumPad.h in Headers */,
+				8BDB9B721CD72148008AA850 /* NumPad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8BD00E011C43358D00120FD3 /* NumPad */ = {
+		8B5617A21CD720AF0058473C /* NumPad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8BD00E161C43358D00120FD3 /* Build configuration list for PBXNativeTarget "NumPad" */;
+			buildConfigurationList = 8B5617AB1CD720AF0058473C /* Build configuration list for PBXNativeTarget "NumPad" */;
 			buildPhases = (
-				8BD00DFD1C43358D00120FD3 /* Sources */,
-				8BD00DFE1C43358D00120FD3 /* Frameworks */,
-				8BD00DFF1C43358D00120FD3 /* Headers */,
-				8BD00E001C43358D00120FD3 /* Resources */,
+				8B56179E1CD720AF0058473C /* Sources */,
+				8B56179F1CD720AF0058473C /* Frameworks */,
+				8B5617A01CD720AF0058473C /* Headers */,
+				8B5617A11CD720AF0058473C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -84,44 +85,42 @@
 			);
 			name = NumPad;
 			productName = NumPad;
-			productReference = 8BD00E021C43358D00120FD3 /* NumPad.framework */;
+			productReference = 8B5617A31CD720AF0058473C /* NumPad.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8BD00DF91C43358D00120FD3 /* Project object */ = {
+		8B56179A1CD720AF0058473C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Lasha Efremidze";
 				TargetAttributes = {
-					8BD00E011C43358D00120FD3 = {
-						CreatedOnToolsVersion = 7.2;
+					8B5617A21CD720AF0058473C = {
+						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
-			buildConfigurationList = 8BD00DFC1C43358D00120FD3 /* Build configuration list for PBXProject "NumPad" */;
+			buildConfigurationList = 8B56179D1CD720AF0058473C /* Build configuration list for PBXProject "NumPad" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = 8BD00DF81C43358D00120FD3;
-			productRefGroup = 8BD00E031C43358D00120FD3 /* Products */;
+			mainGroup = 8B5617991CD720AF0058473C;
+			productRefGroup = 8B5617A41CD720AF0058473C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8BD00E011C43358D00120FD3 /* NumPad */,
+				8B5617A21CD720AF0058473C /* NumPad */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8BD00E001C43358D00120FD3 /* Resources */ = {
+		8B5617A11CD720AF0058473C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -131,21 +130,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8BD00DFD1C43358D00120FD3 /* Sources */ = {
+		8B56179E1CD720AF0058473C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BD00E1D1C4335B000120FD3 /* NumPad.swift in Sources */,
+				8BDB9B731CD72148008AA850 /* NumPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		8BD00E141C43358D00120FD3 /* Debug */ = {
+		8B5617A91CD720AF0058473C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -179,7 +179,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -190,10 +190,11 @@
 			};
 			name = Debug;
 		};
-		8BD00E151C43358D00120FD3 /* Release */ = {
+		8B5617AA1CD720AF0058473C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -221,7 +222,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -231,7 +232,7 @@
 			};
 			name = Release;
 		};
-		8BD00E171C43358D00120FD3 /* Debug */ = {
+		8B5617AC1CD720AF0058473C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -249,7 +250,7 @@
 			};
 			name = Debug;
 		};
-		8BD00E181C43358D00120FD3 /* Release */ = {
+		8B5617AD1CD720AF0058473C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -269,25 +270,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8BD00DFC1C43358D00120FD3 /* Build configuration list for PBXProject "NumPad" */ = {
+		8B56179D1CD720AF0058473C /* Build configuration list for PBXProject "NumPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8BD00E141C43358D00120FD3 /* Debug */,
-				8BD00E151C43358D00120FD3 /* Release */,
+				8B5617A91CD720AF0058473C /* Debug */,
+				8B5617AA1CD720AF0058473C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8BD00E161C43358D00120FD3 /* Build configuration list for PBXNativeTarget "NumPad" */ = {
+		8B5617AB1CD720AF0058473C /* Build configuration list for PBXNativeTarget "NumPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8BD00E171C43358D00120FD3 /* Debug */,
-				8BD00E181C43358D00120FD3 /* Release */,
+				8B5617AC1CD720AF0058473C /* Debug */,
+				8B5617AD1CD720AF0058473C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8BD00DF91C43358D00120FD3 /* Project object */;
+	rootObject = 8B56179A1CD720AF0058473C /* Project object */;
 }
