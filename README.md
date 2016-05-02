@@ -56,7 +56,7 @@ addSubview(numPad)
 
 ### DataSource
 ```swift
-func numberOfRowsInNumberPad(numPad: NumPad) -> Int {
+func numberOfRowsInNumPad(numPad: NumPad) -> Int {
     // numbers of rows
 }
 
