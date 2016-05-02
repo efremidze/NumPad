@@ -8,7 +8,7 @@
 
 ## Overview
 
-Number Pad inspired by Square's design.
+Number Pad inspired by [Square](https://square.com). NumPad is based on [LEAmountInputView](https://github.com/efremidze/LEAmountInputView).
 
 ![Demo](demo.gif)
 
