@@ -14,6 +14,16 @@
 		8B74330B1CD73AF4004A297A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B7433091CD73AF4004A297A /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8BA93CDA1CD74EF000153895 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8BA93CD61CD74EEF00153895 /* NumPad.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8B5617A31CD720AF0058473C;
+			remoteInfo = NumPad;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8B7432FD1CD73AF4004A297A /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B7433001CD73AF4004A297A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -22,6 +32,7 @@
 		8B7433071CD73AF4004A297A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B74330A1CD73AF4004A297A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B74330C1CD73AF4004A297A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BA93CD61CD74EEF00153895 /* NumPad.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NumPad.xcodeproj; path = ../NumPad.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +51,7 @@
 			children = (
 				8B7432FF1CD73AF4004A297A /* Example */,
 				8B7432FE1CD73AF4004A297A /* Products */,
+				8BA93CD61CD74EEF00153895 /* NumPad.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +74,14 @@
 				8B74330C1CD73AF4004A297A /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		8BA93CD71CD74EEF00153895 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8BA93CDB1CD74EF000153895 /* NumPad.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,12 +130,28 @@
 			mainGroup = 8B7432F41CD73AF4004A297A;
 			productRefGroup = 8B7432FE1CD73AF4004A297A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8BA93CD71CD74EEF00153895 /* Products */;
+					ProjectRef = 8BA93CD61CD74EEF00153895 /* NumPad.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8B7432FC1CD73AF4004A297A /* Example */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8BA93CDB1CD74EF000153895 /* NumPad.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = NumPad.framework;
+			remoteRef = 8BA93CDA1CD74EF000153895 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8B7432FB1CD73AF4004A297A /* Resources */ = {
@@ -288,6 +324,7 @@
 				8B7433111CD73AF4004A297A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

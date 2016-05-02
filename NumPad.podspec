@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "NumPad"
-    s.version          = "1.0.1"
+    s.version          = "1.0.2"
     s.summary          = "Number Pad"
     s.homepage         = "https://github.com/efremidze/NumPad"
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
