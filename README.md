@@ -1,14 +1,8 @@
-# NumPad
-
-[![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
-[![License](https://img.shields.io/cocoapods/l/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
-![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Build Status](https://travis-ci.org/efremidze/NumPad.svg)](https://travis-ci.org/efremidze/NumPad)
+# NumPad ![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg) [![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![License](https://img.shields.io/cocoapods/l/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
 
 ## Overview
 
-Number Pad inspired by [Square](https://square.com). NumPad is based on [LEAmountInputView](https://github.com/efremidze/LEAmountInputView).
+Number Pad inspired by [Square](https://square.com). This module is based on [LEAmountInputView](https://github.com/efremidze/LEAmountInputView).
 
 ![Demo](demo.gif)
 
@@ -16,24 +10,22 @@ Number Pad inspired by [Square](https://square.com). NumPad is based on [LEAmoun
 $ pod try NumPad
 ```
 
-## Requirements
-* iOS 7.0+
-* Swift 2.2
-* Xcode 7
-
 ## Installation
 ###CocoaPods
+To install with [CocoaPods](http://cocoapods.org/), simply add this in your *Podfile* file:
   ```ruby
   use_frameworks!
   pod "NumPad"
   ```
 
 ###Carthage
+To install with [Carthage](https://github.com/Carthage/Carthage), simply add this in your `Cartfile`:
   ```ruby
   github "efremidze/NumPad"
   ```
 
 ###Swift Package Manager
+To install with [Swift Package Manager](https://github.com/apple/swift-package-manager), simply add this in your `Package.Swift`:
   ```swift
   import PackageDescription
 
@@ -46,7 +38,7 @@ $ pod try NumPad
   ```
 
 ## Usage
-
+NumPad makes it easy to create a number pad.
 ```swift
 let numPad = NumPad()
 numPad.dataSource = self
