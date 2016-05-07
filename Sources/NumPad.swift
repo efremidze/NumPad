@@ -18,18 +18,10 @@ public struct Position {
 public struct Item {
     public var backgroundColor: UIColor? = .whiteColor()
     public var selectedBackgroundColor: UIColor? = .clearColor()
-    private(set) public var image: UIImage?
-    private(set) public var title: String?
+    public var image: UIImage?
+    public var title: String?
     public var titleColor: UIColor? = .darkTextColor()
     public var titleFont: UIFont?
-    
-    public init(title: String?) {
-        self.title = title
-    }
-    
-    public init(image: UIImage?) {
-        self.image = image
-    }
 }
 
 // MARK: - NumPadDataSource
