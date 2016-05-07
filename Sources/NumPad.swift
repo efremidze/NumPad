@@ -20,8 +20,10 @@ public struct Item {
     public var selectedBackgroundColor: UIColor? = .clearColor()
     public var image: UIImage?
     public var title: String?
-    public var titleColor: UIColor? = .darkTextColor()
+    public var titleColor: UIColor? = .blackColor()
     public var titleFont: UIFont?
+    
+    public init() {}
 }
 
 // MARK: - NumPadDataSource
@@ -138,7 +140,7 @@ public extension NumPad {
 }
 
 // MARK: - Private Helpers
-private extension NumPad {
+extension NumPad {
     
     func indexPathForPosition(position: Position) -> NSIndexPath {
         return NSIndexPath(forItem: position.column, inSection: position.row)
@@ -206,7 +208,7 @@ class Cell: UICollectionViewCell {
 }
 
 // MARK: - UIImage
-private extension UIImage {
+extension UIImage {
     
     convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         var rect = CGRectZero

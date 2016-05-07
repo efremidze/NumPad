@@ -11,17 +11,16 @@ import NumPad
 
 class ViewController: UIViewController {
     
-    private let backgroundColor = UIColor(white: 0.9, alpha: 1)
-    
-    private let containerView = UIView()
     private let textField = UITextField()
-    private let numPad = NumPad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let borderColor = UIColor(white: 0.9, alpha: 1)
+        
+        let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.layer.borderColor = backgroundColor.CGColor
+        containerView.layer.borderColor = borderColor.CGColor
         containerView.layer.borderWidth = 1
         view.addSubview(containerView)
         
@@ -39,8 +38,9 @@ class ViewController: UIViewController {
         textField.enabled = false
         containerView.addSubview(textField)
         
+        let numPad = NumPad()
         numPad.translatesAutoresizingMaskIntoConstraints = false
-        numPad.backgroundColor = backgroundColor
+        numPad.backgroundColor = borderColor
         numPad.dataSource = self
         numPad.delegate = self
         containerView.addSubview(numPad)
@@ -69,6 +69,8 @@ extension ViewController: NumPadDataSource {
     func numPad(numPad: NumPad, itemForPosition position: Position) -> Item {
         let index = numPad.indexForPosition(position)
         
+        var item = Item()
+        
         let title: String
         switch index {
         case 9: title = "C"
@@ -76,7 +78,7 @@ extension ViewController: NumPadDataSource {
         case 11: title = "00"
         default: title = "\(index + 1)"
         }
-        var item = Item(title: title)
+        item.title = title
         
         if index == 9 {
             item.titleColor = .orangeColor()
