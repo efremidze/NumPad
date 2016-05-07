@@ -35,13 +35,12 @@ public protocol NumPadDataSource: class {
 
 // MARK: - NumPadDelegate
 public protocol NumPadDelegate: class {
-    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
     func numPad(numPad: NumPad, itemTappedAtPosition position: Position)
+    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
 }
 
 public extension NumPadDelegate {
     func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize { return numPad.sizeForItemAtPosition(position) }
-    func numPad(numPad: NumPad, itemTappedAtPosition position: Position) {}
 }
 
 // MARK: - NumPad
