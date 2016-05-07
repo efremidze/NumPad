@@ -45,6 +45,7 @@ addSubview(numPad)
 ```
 
 ### DataSource
+Implement the NumPadDataSource to populate the number pad.
 ```swift
 func numberOfRowsInNumPad(numPad: NumPad) -> Int {
     // numbers of rows
@@ -60,6 +61,7 @@ func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton {
 ```
 
 ### Delegate
+Implement the NumPadDelegate to handle taps and customize layout.
 ```swift
 func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
     // handle button tap
