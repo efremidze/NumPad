@@ -27,8 +27,8 @@ class ViewController: UIViewController {
         
         do {
             let views = ["containerView": containerView]
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[containerView]-10-|", options: [], metrics: nil, views: views))
-            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[containerView]-10-|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[containerView]|", options: [], metrics: nil, views: views))
+            view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[containerView]|", options: [], metrics: nil, views: views))
         }
         
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
             let views = ["textField": textField, "numPad": numPad]
             containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[textField]-20-|", options: [], metrics: nil, views: views))
             containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[numPad]|", options: [], metrics: nil, views: views))
-            containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[textField(==120)][numPad]|", options: [], metrics: nil, views: views))
+            containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[textField(==120)][numPad]|", options: [], metrics: nil, views: views))
         }
     }
     
@@ -66,42 +66,27 @@ extension ViewController: NumPadDataSource {
         return 3
     }
     
-    func numPad(numPad: NumPad, buttonForPosition position: Position) -> UIButton {
+    func numPad(numPad: NumPad, itemForPosition position: Position) -> Item {
         let index = numPad.indexForPosition(position)
         
-        let button = UIButton(type: .Custom)
-        
-        // title
-        var title = "\(index + 1)"
+        let title: String
         switch index {
         case 9: title = "C"
         case 10: title = "0"
         case 11: title = "00"
-        default: break
+        default: title = "\(index + 1)"
         }
-        button.setTitle(title, forState: .Normal)
+        var item = Item(title: title)
         
-        // titleColor
-        var titleColor = UIColor(white: 0.3, alpha: 1)
         if index == 9 {
-            titleColor = .orangeColor()
+            item.titleColor = .orangeColor()
+        } else {
+            item.titleColor = UIColor(white: 0.3, alpha: 1)
         }
-        button.setTitleColor(titleColor, forState: .Normal)
         
-        // font
-        button.titleLabel?.font = UIFont.systemFontOfSize(40)
+        item.titleFont = .systemFontOfSize(40)
         
-        // alignment
-        button.titleLabel?.textAlignment = .Center
-        
-        // backgroundImage
-        var image = UIColor.whiteColor().toImage()
-        button.setBackgroundImage(image, forState: .Normal)
-        image = backgroundColor.toImage()
-        button.setBackgroundImage(image, forState: .Highlighted)
-        button.setBackgroundImage(image, forState: .Selected)
-        
-        return button
+        return item
     }
     
 }
@@ -109,44 +94,19 @@ extension ViewController: NumPadDataSource {
 // MARK: - NumPadDelegate
 extension ViewController: NumPadDelegate {
     
-    func numPad(numPad: NumPad, buttonTappedAtPosition position: Position) {
+    func numPad(numPad: NumPad, itemTappedAtPosition position: Position) {
         let index = numPad.indexForPosition(position)
         if index == 9 {
             textField.text = nil
         } else {
-            let button = numPad.buttonForPosition(position)!
-            let string = (textField.text ?? "") + (button.titleForState(.Normal) ?? "")
+            let item = numPad.itemForPosition(position)!
+            let string = (textField.text ?? "") + (item.title ?? "")
             if Int(string) == 0 {
                 textField.text = nil
             } else {
                 textField.text = string
             }
         }
-    }
-    
-}
-
-// MARK: - Extensions
-
-private extension UIColor {
-    
-    func toImage() -> UIImage {
-        return UIImage(color: self)
-    }
-    
-}
-
-private extension UIImage {
-    
-    convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        var rect = CGRectZero
-        rect.size = size
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        color.setFill()
-        UIRectFill(rect)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        self.init(CGImage: image.CGImage!)
     }
     
 }
