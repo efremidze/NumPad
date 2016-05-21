@@ -198,7 +198,7 @@ class Cell: UICollectionViewCell {
         }
     }
     
-    var buttonTapped: (UIButton -> ())?
+    var buttonTapped: (UIButton -> Void)?
     
     @IBAction func _buttonTapped(button: UIButton) {
         buttonTapped?(button)
