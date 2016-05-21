@@ -26,23 +26,6 @@ public struct Item {
     public init() {}
 }
 
-// MARK: - NumPadDataSource
-public protocol NumPadDataSource: class {
-    func numberOfRowsInNumPad(numPad: NumPad) -> Int
-    func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int
-    func numPad(numPad: NumPad, itemForPosition position: Position) -> Item
-}
-
-// MARK: - NumPadDelegate
-public protocol NumPadDelegate: class {
-    func numPad(numPad: NumPad, itemTappedAtPosition position: Position)
-    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
-}
-
-public extension NumPadDelegate {
-    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize { return numPad.sizeForItemAtPosition(position) }
-}
-
 // MARK: - NumPad
 public class NumPad: UIView {
     
@@ -65,8 +48,11 @@ public class NumPad: UIView {
         return collectionView
     }()
     
-    public weak var dataSource: NumPadDataSource?
-    public weak var delegate: NumPadDelegate?
+    public var rows: Int = 4
+    public var columns: (Int -> Int) = { _ in 3 }
+    public var item: (Position -> Item)?
+    public var itemSize: (Position -> CGSize)?
+    public var itemTapped: ((Item, Position) -> Void)?
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -80,19 +66,20 @@ public class NumPad: UIView {
 extension NumPad: UICollectionViewDataSource {
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return numberOfRows()
+        return rows
     }
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfColumnsInRow(section)
+        return columns(section)
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let position = positionForIndexPath(indexPath)
+        let position = self.position(forIndexPath: indexPath)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
-        cell.item = dataSource?.numPad(self, itemForPosition: position)
+        let item = self.item?(position) ?? self.item(forPosition: position)
+        cell.item = item
         cell.buttonTapped = { [unowned self] _ in
-            self.delegate?.numPad(self, itemTappedAtPosition: position)
+            self.itemTapped?(item, position)
         }
         return cell
     }
@@ -103,9 +90,9 @@ extension NumPad: UICollectionViewDataSource {
 extension NumPad: UICollectionViewDelegateFlowLayout {
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let position = positionForIndexPath(indexPath)
-        let size = sizeForItemAtPosition(position)
-        return delegate?.numPad(self, sizeForItemAtPosition: position) ?? size
+        let position = self.position(forIndexPath: indexPath)
+        let size = self.size(forItemAtPosition: position)
+        return itemSize?(position) ?? size
     }
     
 }
@@ -113,23 +100,23 @@ extension NumPad: UICollectionViewDelegateFlowLayout {
 // MARK: - Public Helpers
 public extension NumPad {
     
-    func indexForPosition(position: Position) -> Int {
-        var index = (0..<position.row).map { numberOfColumnsInRow($0) }.reduce(0, combine: +)
+    func index(forPosition position: Position) -> Int {
+        var index = (0..<position.row).map { columns($0) }.reduce(0, combine: +)
         index += position.column
         return index
     }
     
-    func itemForPosition(position: Position) -> Item? {
-        let indexPath = indexPathForPosition(position)
+    func item(forPosition position: Position) -> Item? {
+        let indexPath = self.indexPath(forPosition: position)
         let cell = collectionView.cellForItemAtIndexPath(indexPath)
         return (cell as? Cell)?.item
     }
     
-    func sizeForItemAtPosition(position: Position) -> CGSize {
-        let indexPath = indexPathForPosition(position)
+    func size(forItemAtPosition position: Position) -> CGSize {
+        let indexPath = self.indexPath(forPosition: position)
         
-        let numberOfRows = CGFloat(self.numberOfRows())
-        let numberOfColumns = CGFloat(self.numberOfColumnsInRow(indexPath.section))
+        let numberOfRows = CGFloat(rows)
+        let numberOfColumns = CGFloat(columns(indexPath.section))
         
         let width = collectionView.frame.width / numberOfColumns
         let height = collectionView.frame.height / numberOfRows
@@ -141,20 +128,37 @@ public extension NumPad {
 // MARK: - Private Helpers
 extension NumPad {
     
-    func indexPathForPosition(position: Position) -> NSIndexPath {
+    func indexPath(forPosition position: Position) -> NSIndexPath {
         return NSIndexPath(forItem: position.column, inSection: position.row)
     }
     
-    func positionForIndexPath(indexPath: NSIndexPath) -> Position {
+    func position(forIndexPath indexPath: NSIndexPath) -> Position {
         return Position(row: indexPath.section, column: indexPath.item)
     }
     
-    func numberOfRows() -> Int {
-        return dataSource?.numberOfRowsInNumPad(self) ?? 0
-    }
-    
-    func numberOfColumnsInRow(row: Int) -> Int {
-        return dataSource?.numPad(self, numberOfColumnsInRow: row) ?? 0
+    func item(forPosition position: Position) -> Item {
+        let index = self.index(forPosition: position)
+        
+        var item = Item()
+        
+        let title: String
+        switch index {
+        case 9: title = "C"
+        case 10: title = "0"
+        case 11: title = "00"
+        default: title = "\(index + 1)"
+        }
+        item.title = title
+        
+        if index == 9 {
+            item.titleColor = .orangeColor()
+        } else {
+            item.titleColor = UIColor(white: 0.3, alpha: 1)
+        }
+        
+        item.titleFont = .systemFontOfSize(40)
+        
+        return item
     }
     
 }
