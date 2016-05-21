@@ -118,9 +118,10 @@ public extension NumPad {
         let numberOfRows = CGFloat(rows)
         let numberOfColumns = CGFloat(columns(indexPath.section))
         
-        let width = collectionView.frame.width / numberOfColumns
-        let height = collectionView.frame.height / numberOfRows
-        return CGSize(width: width, height: height)
+        var size = collectionView.frame.size
+        size.width /= numberOfColumns
+        size.height /= numberOfRows
+        return size
     }
     
 }
