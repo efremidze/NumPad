@@ -48,10 +48,43 @@ public class NumPad: UIView {
         return collectionView
     }()
     
+    /// The number of rows.
     public var rows: Int = 4
+    
+    /**
+     The number of columns in row.
+     
+         numPad.columns = { row in
+            return 3
+         }
+     */
     public var columns: (Int -> Int) = { _ in 3 }
+    
+    /**
+     The item at position.
+     
+         numPad.item = { position in
+            return Item()
+         }
+     */
     public var item: (Position -> Item)?
+    
+    /**
+     The size of an item at position.
+     
+         numPad.itemSize = { position in
+             return CGSize(width: 20, height: 20)
+         }
+     */
     public var itemSize: (Position -> CGSize)?
+    
+    /**
+     The item was tapped handler.
+     
+         numPad.itemTapped = { item, position in
+             print("item tapped")
+         }
+     */
     public var itemTapped: ((Item, Position) -> Void)?
     
     override public func layoutSubviews() {
