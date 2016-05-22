@@ -36,39 +36,21 @@ To install with [Swift Package Manager](https://github.com/apple/swift-package-m
   ```
 
 ## Usage
-NumPad makes it easy to create a number pad.
+NumPad simply works!
 ```swift
+import NumPad
+
 let numPad = NumPad()
-numPad.dataSource = self
-numPad.delegate = self
 addSubview(numPad)
 ```
 
-### DataSource
+### Customization
 ```swift
-func numberOfRowsInNumPad(numPad: NumPad) -> Int {
-    // numbers of rows
-}
-
-func numPad(numPad: NumPad, numberOfColumnsInRow row: Int) -> Int {
-    // numbers of columns
-}
-
-func numPad(numPad: NumPad, itemForPosition position: Position) -> Item {
-    // setup item
-}
-```
-
-### Delegate
-```swift
-func numPad(numPad: NumPad, itemTappedAtPosition position: Position) {
-    // handle item tap
-}
-
-// optional
-func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize {
-    // override item sizing
-}
+var rows: Int // number of rows
+var columns: (Int -> Int) // number of columns for row
+var item: (Position -> Item)? // item for position
+var itemSize: (Position -> CGSize)? // item size for position
+var itemTapped: ((Item, Position) -> Void)? // handle item tap
 ```
 
 ## Contributions
