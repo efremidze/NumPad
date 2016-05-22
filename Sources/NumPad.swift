@@ -33,13 +33,14 @@ public class NumPad: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        let collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
+        let collectionView = CollectionView(frame: CGRect(), collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .clearColor()
         collectionView.allowsSelection = false
         collectionView.scrollEnabled = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView.numPad = self
+        collectionView.dataSource = collectionView
+        collectionView.delegate = collectionView
         collectionView.registerClass(Cell.self, forCellWithReuseIdentifier: String(Cell))
         self.addSubview(collectionView)
         let views = ["collectionView": collectionView]
@@ -95,56 +96,24 @@ public class NumPad: UIView {
     
 }
 
-// MARK: - UICollectionViewDataSource
-extension NumPad: UICollectionViewDataSource {
-    
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return rows
-    }
-    
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return columns(section)
-    }
-    
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let position = self.position(forIndexPath: indexPath)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
-        let item = self.item?(position) ?? self.item(forPosition: position)
-        cell.item = item
-        cell.buttonTapped = { [unowned self] _ in
-            self.itemTapped?(item, position)
-        }
-        return cell
-    }
-    
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-extension NumPad: UICollectionViewDelegateFlowLayout {
-    
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let position = self.position(forIndexPath: indexPath)
-        let size = self.size(forItemAtPosition: position)
-        return itemSize?(position) ?? size
-    }
-    
-}
-
 // MARK: - Public Helpers
 public extension NumPad {
     
+    /// Returns the index at the specified position.
     func index(forPosition position: Position) -> Int {
         var index = (0..<position.row).map { columns($0) }.reduce(0, combine: +)
         index += position.column
         return index
     }
     
+    /// Returns the item at the specified position.
     func item(forPosition position: Position) -> Item? {
         let indexPath = self.indexPath(forPosition: position)
         let cell = collectionView.cellForItemAtIndexPath(indexPath)
         return (cell as? Cell)?.item
     }
     
+    /// Returns the item size at the specified position.
     func size(forItemAtPosition position: Position) -> CGSize {
         let indexPath = self.indexPath(forPosition: position)
         
@@ -193,6 +162,48 @@ extension NumPad {
         item.titleFont = .systemFontOfSize(40)
         
         return item
+    }
+    
+}
+
+// MARK: - CollectionView
+class CollectionView: UICollectionView {
+    
+    weak var numPad: NumPad!
+    
+}
+
+// MARK: - UICollectionViewDataSource
+extension CollectionView: UICollectionViewDataSource {
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return numPad.rows
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return numPad.columns(section)
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let position = numPad.position(forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
+        let item = numPad.item?(position) ?? numPad.item(forPosition: position)
+        cell.item = item
+        cell.buttonTapped = { [unowned self] _ in
+            self.numPad.itemTapped?(item, position)
+        }
+        return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension CollectionView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let position = numPad.position(forIndexPath: indexPath)
+        let size = numPad.size(forItemAtPosition: position)
+        return numPad.itemSize?(position) ?? size
     }
     
 }
