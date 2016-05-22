@@ -10,7 +10,7 @@ $ pod try NumPad
 
 ## Installation
 ###CocoaPods
-To install with [CocoaPods](http://cocoapods.org/), simply add this in your *Podfile* file:
+To install with [CocoaPods](http://cocoapods.org/), simply add this in your `Podfile`:
   ```ruby
   use_frameworks!
   pod "NumPad"
