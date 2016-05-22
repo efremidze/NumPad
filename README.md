@@ -22,19 +22,6 @@ To install with [Carthage](https://github.com/Carthage/Carthage), simply add thi
   github "efremidze/NumPad"
   ```
 
-###Swift Package Manager
-To install with [Swift Package Manager](https://github.com/apple/swift-package-manager), simply add this in your `Package.Swift`:
-  ```swift
-  import PackageDescription
-
-  let package = Package(
-    name: "NumPad",
-    dependencies: [
-      .Package(url: "https://github.com/efremidze/NumPad.git", majorVersion: 1)
-    ]
-  )
-  ```
-
 ## Usage
 NumPad simply works!
 ```swift
