@@ -11,16 +11,16 @@ $ pod try NumPad
 ## Installation
 ###CocoaPods
 To install with [CocoaPods](http://cocoapods.org/), simply add this in your `Podfile`:
-  ```ruby
-  use_frameworks!
-  pod "NumPad"
-  ```
+```ruby
+use_frameworks!
+pod "NumPad"
+```
 
 ###Carthage
 To install with [Carthage](https://github.com/Carthage/Carthage), simply add this in your `Cartfile`:
-  ```ruby
-  github "efremidze/NumPad"
-  ```
+```ruby
+github "efremidze/NumPad"
+```
 
 ## Usage
 NumPad simply works!

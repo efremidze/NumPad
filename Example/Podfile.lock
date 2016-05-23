@@ -1,0 +1,16 @@
+PODS:
+  - NumPad (1.0.6)
+
+DEPENDENCIES:
+  - NumPad (from `../`)
+
+EXTERNAL SOURCES:
+  NumPad:
+    :path: ../
+
+SPEC CHECKSUMS:
+  NumPad: da741c1ef5e33fd808cc08a0d7c828c55fa29a7f
+
+PODFILE CHECKSUM: 8f6b35ac46f1d49f0f3047b7c1446af912a19163
+
+COCOAPODS: 1.0.0

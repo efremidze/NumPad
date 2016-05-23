@@ -1,0 +1,6 @@
+framework module NumPad {
+  umbrella header "NumPad-umbrella.h"
+
+  export *
+  module * { export * }
+}
