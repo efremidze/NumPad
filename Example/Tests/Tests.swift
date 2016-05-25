@@ -50,6 +50,7 @@ class Tests: XCTestCase {
         buttons["0"].tap()
         buttons["00"].tap()
         buttons["C"].tap()
+        buttons["0"].tap()
     }
     
 }

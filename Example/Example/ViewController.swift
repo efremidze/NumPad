@@ -60,7 +60,7 @@ class ViewController: UIViewController {
             textField.text = nil
         } else {
             let item = numPad.item(forPosition: position)!
-            let string = (textField.text ?? "") + (item.title ?? "")
+            let string = textField.text! + item.title!
             if Int(string) == 0 {
                 textField.text = nil
             } else {
