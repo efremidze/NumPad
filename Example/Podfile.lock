@@ -1,5 +1,5 @@
 PODS:
-  - NumPad (1.0.6)
+  - NumPad (1.0.7)
 
 DEPENDENCIES:
   - NumPad (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  NumPad: da741c1ef5e33fd808cc08a0d7c828c55fa29a7f
+  NumPad: 28fae5375c83d2ba9f1669933e7139fa03518dbc
 
 PODFILE CHECKSUM: 8f6b35ac46f1d49f0f3047b7c1446af912a19163
 
