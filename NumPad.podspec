@@ -11,9 +11,10 @@ Pod::Spec.new do |s|
     s.version          = "1.0.7"
     s.summary          = "Number Pad"
     s.homepage         = "https://github.com/efremidze/NumPad"
-    s.license          = { :type => 'MIT', :file => 'LICENSE' }
+    s.license          = 'MIT'
     s.author           = { "Lasha Efremidze" => "efremidzel@hotmail.com" }
-    s.platform         = :ios, "8.0"
-    s.source           = { :git => "https://github.com/efremidze/NumPad.git", :tag => s.version.to_s }
+    s.ios.deployment_target = '8.0'
+    s.source           = { :git => 'https://github.com/efremidze/NumPad.git', :tag => s.version }
     s.source_files     = "Sources/*.swift"
+    s.requires_arc     = true
 end
