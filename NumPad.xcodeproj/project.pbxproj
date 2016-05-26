@@ -7,85 +7,85 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BF264181CF6D14E00AC1871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BF264151CF6D14E00AC1871 /* Info.plist */; };
-		8BF264191CF6D14E00AC1871 /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BF264161CF6D14E00AC1871 /* NumPad.h */; };
-		8BF2641A1CF6D14E00AC1871 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF264171CF6D14E00AC1871 /* NumPad.swift */; };
-		8BF264221CF6D1E500AC1871 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF264211CF6D1E500AC1871 /* Tests.swift */; };
-		8BF264241CF6D1E500AC1871 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B425DFF1CF6CBB4009822B1 /* NumPad.framework */; };
+		8B797AB01CF6D87C00DAF7DD /* NumPad.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B797AAF1CF6D87C00DAF7DD /* NumPad.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8B94351D1CF6D8CA007BED16 /* NumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94351C1CF6D8CA007BED16 /* NumPad.swift */; };
+		8B9435251CF6D90D007BED16 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9435241CF6D90D007BED16 /* Tests.swift */; };
+		8B9435271CF6D90D007BED16 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B797AAC1CF6D87B00DAF7DD /* NumPad.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8BF264251CF6D1E500AC1871 /* PBXContainerItemProxy */ = {
+		8B9435281CF6D90D007BED16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 8B425DF61CF6CBB4009822B1 /* Project object */;
+			containerPortal = 8B797AA31CF6D87B00DAF7DD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8B425DFE1CF6CBB4009822B1;
+			remoteGlobalIDString = 8B797AAB1CF6D87B00DAF7DD;
 			remoteInfo = NumPad;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8B425DFF1CF6CBB4009822B1 /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BF264151CF6D14E00AC1871 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
-		8BF264161CF6D14E00AC1871 /* NumPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumPad.h; path = Sources/NumPad.h; sourceTree = SOURCE_ROOT; };
-		8BF264171CF6D14E00AC1871 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NumPad.swift; path = Sources/NumPad.swift; sourceTree = SOURCE_ROOT; };
-		8BF2641F1CF6D1E500AC1871 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BF264211CF6D1E500AC1871 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		8BF264231CF6D1E500AC1871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B797AAC1CF6D87B00DAF7DD /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B797AAF1CF6D87C00DAF7DD /* NumPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumPad.h; sourceTree = "<group>"; };
+		8B797AB11CF6D87C00DAF7DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B94351C1CF6D8CA007BED16 /* NumPad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumPad.swift; sourceTree = "<group>"; };
+		8B9435221CF6D90D007BED16 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B9435241CF6D90D007BED16 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		8B9435261CF6D90D007BED16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8B425DFB1CF6CBB4009822B1 /* Frameworks */ = {
+		8B797AA81CF6D87B00DAF7DD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BF2641C1CF6D1E500AC1871 /* Frameworks */ = {
+		8B94351F1CF6D90D007BED16 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF264241CF6D1E500AC1871 /* NumPad.framework in Frameworks */,
+				8B9435271CF6D90D007BED16 /* NumPad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8B425DF51CF6CBB4009822B1 = {
+		8B797AA21CF6D87B00DAF7DD = {
 			isa = PBXGroup;
 			children = (
-				8B425E011CF6CBB4009822B1 /* NumPad */,
-				8BF264201CF6D1E500AC1871 /* Tests */,
-				8B425E001CF6CBB4009822B1 /* Products */,
+				8B797AAE1CF6D87C00DAF7DD /* NumPad */,
+				8B9435231CF6D90D007BED16 /* Tests */,
+				8B797AAD1CF6D87B00DAF7DD /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8B425E001CF6CBB4009822B1 /* Products */ = {
+		8B797AAD1CF6D87B00DAF7DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8B425DFF1CF6CBB4009822B1 /* NumPad.framework */,
-				8BF2641F1CF6D1E500AC1871 /* Tests.xctest */,
+				8B797AAC1CF6D87B00DAF7DD /* NumPad.framework */,
+				8B9435221CF6D90D007BED16 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8B425E011CF6CBB4009822B1 /* NumPad */ = {
+		8B797AAE1CF6D87C00DAF7DD /* NumPad */ = {
 			isa = PBXGroup;
 			children = (
-				8BF264151CF6D14E00AC1871 /* Info.plist */,
-				8BF264161CF6D14E00AC1871 /* NumPad.h */,
-				8BF264171CF6D14E00AC1871 /* NumPad.swift */,
+				8B797AB11CF6D87C00DAF7DD /* Info.plist */,
+				8B797AAF1CF6D87C00DAF7DD /* NumPad.h */,
+				8B94351C1CF6D8CA007BED16 /* NumPad.swift */,
 			);
-			path = NumPad;
+			name = NumPad;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		8BF264201CF6D1E500AC1871 /* Tests */ = {
+		8B9435231CF6D90D007BED16 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8BF264211CF6D1E500AC1871 /* Tests.swift */,
-				8BF264231CF6D1E500AC1871 /* Info.plist */,
+				8B9435241CF6D90D007BED16 /* Tests.swift */,
+				8B9435261CF6D90D007BED16 /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -93,25 +93,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		8B425DFC1CF6CBB4009822B1 /* Headers */ = {
+		8B797AA91CF6D87B00DAF7DD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF264191CF6D14E00AC1871 /* NumPad.h in Headers */,
+				8B797AB01CF6D87C00DAF7DD /* NumPad.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8B425DFE1CF6CBB4009822B1 /* NumPad */ = {
+		8B797AAB1CF6D87B00DAF7DD /* NumPad */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8B425E131CF6CBB4009822B1 /* Build configuration list for PBXNativeTarget "NumPad" */;
+			buildConfigurationList = 8B797AB41CF6D87C00DAF7DD /* Build configuration list for PBXNativeTarget "NumPad" */;
 			buildPhases = (
-				8B425DFA1CF6CBB4009822B1 /* Sources */,
-				8B425DFB1CF6CBB4009822B1 /* Frameworks */,
-				8B425DFC1CF6CBB4009822B1 /* Headers */,
-				8B425DFD1CF6CBB4009822B1 /* Resources */,
+				8B797AA71CF6D87B00DAF7DD /* Sources */,
+				8B797AA81CF6D87B00DAF7DD /* Frameworks */,
+				8B797AA91CF6D87B00DAF7DD /* Headers */,
+				8B797AAA1CF6D87B00DAF7DD /* Resources */,
 			);
 			buildRules = (
 			);
@@ -119,73 +119,72 @@
 			);
 			name = NumPad;
 			productName = NumPad;
-			productReference = 8B425DFF1CF6CBB4009822B1 /* NumPad.framework */;
+			productReference = 8B797AAC1CF6D87B00DAF7DD /* NumPad.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8BF2641E1CF6D1E500AC1871 /* Tests */ = {
+		8B9435211CF6D90D007BED16 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8BF264271CF6D1E500AC1871 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 8B94352A1CF6D90D007BED16 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				8BF2641B1CF6D1E500AC1871 /* Sources */,
-				8BF2641C1CF6D1E500AC1871 /* Frameworks */,
-				8BF2641D1CF6D1E500AC1871 /* Resources */,
+				8B94351E1CF6D90D007BED16 /* Sources */,
+				8B94351F1CF6D90D007BED16 /* Frameworks */,
+				8B9435201CF6D90D007BED16 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				8BF264261CF6D1E500AC1871 /* PBXTargetDependency */,
+				8B9435291CF6D90D007BED16 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
-			productReference = 8BF2641F1CF6D1E500AC1871 /* Tests.xctest */;
+			productReference = 8B9435221CF6D90D007BED16 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8B425DF61CF6CBB4009822B1 /* Project object */ = {
+		8B797AA31CF6D87B00DAF7DD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Lasha Efremidze";
 				TargetAttributes = {
-					8B425DFE1CF6CBB4009822B1 = {
+					8B797AAB1CF6D87B00DAF7DD = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
-					8BF2641E1CF6D1E500AC1871 = {
+					8B9435211CF6D90D007BED16 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
-			buildConfigurationList = 8B425DF91CF6CBB4009822B1 /* Build configuration list for PBXProject "NumPad" */;
+			buildConfigurationList = 8B797AA61CF6D87B00DAF7DD /* Build configuration list for PBXProject "NumPad" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 8B425DF51CF6CBB4009822B1;
-			productRefGroup = 8B425E001CF6CBB4009822B1 /* Products */;
+			mainGroup = 8B797AA21CF6D87B00DAF7DD;
+			productRefGroup = 8B797AAD1CF6D87B00DAF7DD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8B425DFE1CF6CBB4009822B1 /* NumPad */,
-				8BF2641E1CF6D1E500AC1871 /* Tests */,
+				8B797AAB1CF6D87B00DAF7DD /* NumPad */,
+				8B9435211CF6D90D007BED16 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8B425DFD1CF6CBB4009822B1 /* Resources */ = {
+		8B797AAA1CF6D87B00DAF7DD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF264181CF6D14E00AC1871 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BF2641D1CF6D1E500AC1871 /* Resources */ = {
+		8B9435201CF6D90D007BED16 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -195,34 +194,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8B425DFA1CF6CBB4009822B1 /* Sources */ = {
+		8B797AA71CF6D87B00DAF7DD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF2641A1CF6D14E00AC1871 /* NumPad.swift in Sources */,
+				8B94351D1CF6D8CA007BED16 /* NumPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8BF2641B1CF6D1E500AC1871 /* Sources */ = {
+		8B94351E1CF6D90D007BED16 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BF264221CF6D1E500AC1871 /* Tests.swift in Sources */,
+				8B9435251CF6D90D007BED16 /* Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8BF264261CF6D1E500AC1871 /* PBXTargetDependency */ = {
+		8B9435291CF6D90D007BED16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8B425DFE1CF6CBB4009822B1 /* NumPad */;
-			targetProxy = 8BF264251CF6D1E500AC1871 /* PBXContainerItemProxy */;
+			target = 8B797AAB1CF6D87B00DAF7DD /* NumPad */;
+			targetProxy = 8B9435281CF6D90D007BED16 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		8B425E111CF6CBB4009822B1 /* Debug */ = {
+		8B797AB21CF6D87C00DAF7DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -271,7 +270,7 @@
 			};
 			name = Debug;
 		};
-		8B425E121CF6CBB4009822B1 /* Release */ = {
+		8B797AB31CF6D87C00DAF7DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -313,7 +312,7 @@
 			};
 			name = Release;
 		};
-		8B425E141CF6CBB4009822B1 /* Debug */ = {
+		8B797AB51CF6D87C00DAF7DD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -331,7 +330,7 @@
 			};
 			name = Debug;
 		};
-		8B425E151CF6CBB4009822B1 /* Release */ = {
+		8B797AB61CF6D87C00DAF7DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
@@ -348,7 +347,7 @@
 			};
 			name = Release;
 		};
-		8BF264281CF6D1E500AC1871 /* Debug */ = {
+		8B94352B1CF6D90D007BED16 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -358,7 +357,7 @@
 			};
 			name = Debug;
 		};
-		8BF264291CF6D1E500AC1871 /* Release */ = {
+		8B94352C1CF6D90D007BED16 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -371,33 +370,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8B425DF91CF6CBB4009822B1 /* Build configuration list for PBXProject "NumPad" */ = {
+		8B797AA61CF6D87B00DAF7DD /* Build configuration list for PBXProject "NumPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8B425E111CF6CBB4009822B1 /* Debug */,
-				8B425E121CF6CBB4009822B1 /* Release */,
+				8B797AB21CF6D87C00DAF7DD /* Debug */,
+				8B797AB31CF6D87C00DAF7DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8B425E131CF6CBB4009822B1 /* Build configuration list for PBXNativeTarget "NumPad" */ = {
+		8B797AB41CF6D87C00DAF7DD /* Build configuration list for PBXNativeTarget "NumPad" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8B425E141CF6CBB4009822B1 /* Debug */,
-				8B425E151CF6CBB4009822B1 /* Release */,
+				8B797AB51CF6D87C00DAF7DD /* Debug */,
+				8B797AB61CF6D87C00DAF7DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8BF264271CF6D1E500AC1871 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		8B94352A1CF6D90D007BED16 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8BF264281CF6D1E500AC1871 /* Debug */,
-				8BF264291CF6D1E500AC1871 /* Release */,
+				8B94352B1CF6D90D007BED16 /* Debug */,
+				8B94352C1CF6D90D007BED16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8B425DF61CF6CBB4009822B1 /* Project object */;
+	rootObject = 8B797AA31CF6D87B00DAF7DD /* Project object */;
 }
