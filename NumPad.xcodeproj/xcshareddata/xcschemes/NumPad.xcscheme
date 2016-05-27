@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8B797AAB1CF6D87B00DAF7DD"
+               BlueprintIdentifier = "8B7950041CF83A0E00392FCA"
                BuildableName = "NumPad.framework"
                BlueprintName = "NumPad"
                ReferencedContainer = "container:NumPad.xcodeproj">
@@ -33,7 +33,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8B9435211CF6D90D007BED16"
+               BlueprintIdentifier = "8BEB96E21CF83E670028C62A"
                BuildableName = "Tests.xctest"
                BlueprintName = "Tests"
                ReferencedContainer = "container:NumPad.xcodeproj">
@@ -43,7 +43,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8B797AAB1CF6D87B00DAF7DD"
+            BlueprintIdentifier = "8B7950041CF83A0E00392FCA"
             BuildableName = "NumPad.framework"
             BlueprintName = "NumPad"
             ReferencedContainer = "container:NumPad.xcodeproj">
@@ -65,7 +65,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8B797AAB1CF6D87B00DAF7DD"
+            BlueprintIdentifier = "8B7950041CF83A0E00392FCA"
             BuildableName = "NumPad.framework"
             BlueprintName = "NumPad"
             ReferencedContainer = "container:NumPad.xcodeproj">
@@ -83,7 +83,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8B797AAB1CF6D87B00DAF7DD"
+            BlueprintIdentifier = "8B7950041CF83A0E00392FCA"
             BuildableName = "NumPad.framework"
             BlueprintName = "NumPad"
             ReferencedContainer = "container:NumPad.xcodeproj">

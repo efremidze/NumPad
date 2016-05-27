@@ -1,9 +1,0 @@
-use_frameworks!
-
-target 'Example' do
-  pod 'NumPad', :path => '../'
-
-  target 'Tests' do
-    inherit! :search_paths
-  end
-end

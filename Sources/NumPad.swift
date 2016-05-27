@@ -221,9 +221,9 @@ class Cell: UICollectionViewCell {
 // MARK: - UIImage
 extension UIImage {
     
-    convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        var rect = CGRectZero
-        rect.size = size
+    convenience init(color: UIColor) {
+        let size = CGSize(width: 1, height: 1)
+        let rect = CGRect(origin: CGPoint(), size: size)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(rect)
