@@ -23,11 +23,11 @@ github "efremidze/NumPad"
 ```
 
 ## Usage
-NumPad simply works!
+Use the DefaultNumPad for an already configured NumPad.
 ```swift
 import NumPad
 
-let numPad = NumPad()
+let numPad = DefaultNumPad()
 addSubview(numPad)
 ```
 
@@ -35,7 +35,7 @@ addSubview(numPad)
 ```swift
 var rows: Int // number of rows
 var columns: (Int -> Int) // number of columns for row
-var item: (Position -> Item)? // item for position
+var item: (Position -> Item) // item for position
 var itemSize: (Position -> CGSize)? // item size for position
 var itemTapped: ((Item, Position) -> Void)? // handle item tap
 ```
