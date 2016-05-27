@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }()
     
     private lazy var numPad: NumPad = { [unowned self] in
-        let numPad = NumPad(type: .Default)
+        let numPad = DefaultNumPad()
         numPad.itemTapped = self.itemTapped
         numPad.translatesAutoresizingMaskIntoConstraints = false
         numPad.backgroundColor = self.borderColor
