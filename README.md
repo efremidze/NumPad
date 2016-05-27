@@ -23,9 +23,16 @@ github "efremidze/NumPad"
 ```
 
 ## Usage
+
+At first, import NumPad library:
+
 ```swift
 import NumPad
+```
 
+Then just create your `NumPad`:
+
+```swift
 let numPad = NumPad()
 numPad.rows = 4
 numPad.columns = { _ in 3 }
@@ -58,10 +65,9 @@ numPad.item = { [unowned numPad] position in
 addSubview(numPad)
 ```
 
-Or use the DefaultNumPad for an already configured NumPad.
-```swift
-import NumPad
+Or use the `DefaultNumPad` for an already styled NumPad.
 
+```swift
 let numPad = DefaultNumPad()
 addSubview(numPad)
 ```
