@@ -30,7 +30,7 @@ class Tests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let numPad = NumPad()
+        let numPad = NumPad(type: .Default)
         numPad.frame = viewController.view.bounds
         numPad.itemTapped = { _ in }
         viewController.view.addSubview(numPad)

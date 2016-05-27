@@ -26,6 +26,12 @@ public struct Item {
     public init() {}
 }
 
+/// The style of number pad
+public enum NumPadType {
+    case Custom // no type
+    case Default // standard styling
+}
+
 // MARK: - NumPad
 public class NumPad: UIView {
     
@@ -77,7 +83,7 @@ public class NumPad: UIView {
              return CGSize(width: 20, height: 20)
          }
      */
-    public var itemSize: (Position -> CGSize) = { _ in CGSize() }
+    public var itemSize: (Position -> CGSize)?
     
     /**
      The item was tapped handler.
@@ -87,6 +93,63 @@ public class NumPad: UIView {
          }
      */
     public var itemTapped: ((Item, Position) -> Void)?
+    
+    /// The number pad type.
+    public internal(set) var type: NumPadType = .Default
+    
+    /// Creates and returns a new number pad of the specified type.
+    public convenience init(type: NumPadType) {
+        self.init()
+        self.type = type
+        initialize()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+    
+    func initialize() {
+        switch type {
+        case .Custom:
+            rows = 0
+            columns = { _ in 0 }
+            item = { _ in Item() }
+        case .Default:
+            rows = 4
+            columns = { _ in 3 }
+            item = { [unowned self] position in
+                var item = Item()
+                item.title = {
+                    switch (position.row, position.column) {
+                    case (3, 0):
+                        return "C"
+                    case (3, 1):
+                        return "0"
+                    case (3, 2):
+                        return "00"
+                    default:
+                        var index = (0..<position.row).map { self.columns($0) }.reduce(0, combine: +)
+                        index += position.column
+                        return "\(index + 1)"
+                    }
+                }()
+                item.titleColor = {
+                    if (position.row, position.column) == (3, 0) {
+                        return .orangeColor()
+                    } else {
+                        return UIColor(white: 0.3, alpha: 1)
+                    }
+                }()
+                item.titleFont = .systemFontOfSize(40)
+                return item
+            }
+        }
+    }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -106,28 +169,17 @@ public extension NumPad {
         return (cell as? Cell)?.item
     }
     
-    /// Returns the item size at the specified position.
-    func size(forItemAtPosition position: Position) -> CGSize {
-        let indexPath = self.indexPath(forPosition: position)
-        
-        let numberOfRows = CGFloat(rows)
-        let numberOfColumns = CGFloat(columns(indexPath.section))
-        
-        var size = collectionView.frame.size
-        size.width /= numberOfColumns
-        size.height /= numberOfRows
-        return size
-    }
-    
 }
 
 // MARK: - Private Helpers
 extension NumPad {
     
+    /// Returns the index path at the specified position.
     func indexPath(forPosition position: Position) -> NSIndexPath {
         return NSIndexPath(forItem: position.column, inSection: position.row)
     }
     
+    /// Returns the position at the specified index path.
     func position(forIndexPath indexPath: NSIndexPath) -> Position {
         return Position(row: indexPath.section, column: indexPath.item)
     }
@@ -170,7 +222,13 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let position = numPad.position(forIndexPath: indexPath)
-        return numPad.itemSize(position)
+        return numPad.itemSize?(position) ?? {
+            let indexPath = numPad.indexPath(forPosition: position)
+            var size = collectionView.frame.size
+            size.width /= CGFloat(numPad.columns(indexPath.section))
+            size.height /= CGFloat(numPad.rows)
+            return size
+        }()
     }
     
 }
