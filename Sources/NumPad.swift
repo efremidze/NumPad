@@ -50,7 +50,7 @@ public class NumPad: UIView {
     }()
     
     /// The number of rows.
-    public var rows: Int
+    public var rows: Int = 0
     
     /**
      The number of columns in row.
@@ -59,7 +59,7 @@ public class NumPad: UIView {
             return 3
          }
      */
-    public var columns: (Int -> Int)
+    public var columns: (Int -> Int) = { _ in 0 }
     
     /**
      The item at position.
@@ -68,7 +68,7 @@ public class NumPad: UIView {
             return Item()
          }
      */
-    public var item: (Position -> Item)?
+    public var item: (Position -> Item) = { _ in Item() }
     
     /**
      The size of an item at position.
@@ -77,7 +77,7 @@ public class NumPad: UIView {
              return CGSize(width: 20, height: 20)
          }
      */
-    public var itemSize: (Position -> CGSize)?
+    public var itemSize: (Position -> CGSize) = { _ in CGSize() }
     
     /**
      The item was tapped handler.
@@ -87,50 +87,6 @@ public class NumPad: UIView {
          }
      */
     public var itemTapped: ((Item, Position) -> Void)?
-    
-    override public init(frame: CGRect) {
-        rows = 4
-        columns = { _ in 3 }
-        super.init(frame: frame)
-        initialize()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        rows = 4
-        columns = { _ in 3 }
-        super.init(coder: aDecoder)
-        initialize()
-    }
-    
-    func initialize() {
-        self.item = { position in
-            let index = self.index(forPosition: position)
-            
-            var item = Item()
-            
-            switch index {
-            case 9:
-                item.title = "C"
-            case 10:
-                item.title = "0"
-            case 11:
-                item.title = "00"
-            default:
-                item.title = "\(index + 1)"
-            }
-            
-            switch index {
-            case 9:
-                item.titleColor = .orangeColor()
-            default:
-                item.titleColor = UIColor(white: 0.3, alpha: 1)
-            }
-            
-            item.titleFont = .systemFontOfSize(40)
-            
-            return item
-        }
-    }
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -142,13 +98,6 @@ public class NumPad: UIView {
 
 // MARK: - Public Helpers
 public extension NumPad {
-    
-    /// Returns the index at the specified position.
-    func index(forPosition position: Position) -> Int {
-        var index = (0..<position.row).map { columns($0) }.reduce(0, combine: +)
-        index += position.column
-        return index
-    }
     
     /// Returns the item at the specified position.
     func item(forPosition position: Position) -> Item? {
@@ -206,7 +155,7 @@ extension CollectionView: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let position = numPad.position(forIndexPath: indexPath)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
-        let item = numPad.item?(position) ?? Item()
+        let item = numPad.item(position)
         cell.item = item
         cell.buttonTapped = { [unowned self] _ in
             self.numPad.itemTapped?(item, position)
@@ -221,8 +170,7 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let position = numPad.position(forIndexPath: indexPath)
-        let size = numPad.size(forItemAtPosition: position)
-        return numPad.itemSize?(position) ?? size
+        return numPad.itemSize(position)
     }
     
 }
