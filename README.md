@@ -23,7 +23,42 @@ github "efremidze/NumPad"
 ```
 
 ## Usage
-Use the DefaultNumPad for an already configured NumPad.
+```swift
+import NumPad
+
+let numPad = NumPad()
+numPad.rows = 4
+numPad.columns = { _ in 3 }
+numPad.item = { [unowned numPad] position in
+    var item = Item()
+    item.title = {
+        switch (position.row, position.column) {
+        case (3, 0):
+            return "C"
+        case (3, 1):
+            return "0"
+        case (3, 2):
+            return "00"
+        default:
+            var index = (0..<position.row).map { numPad.columns($0) }.reduce(0, combine: +)
+            index += position.column
+            return "\(index + 1)"
+        }
+    }()
+    item.titleColor = {
+        if (position.row, position.column) == (3, 0) {
+            return .orangeColor()
+        } else {
+            return UIColor(white: 0.3, alpha: 1)
+        }
+    }()
+    item.titleFont = .systemFontOfSize(40)
+    return item
+}
+addSubview(numPad)
+```
+
+Or use the DefaultNumPad for an already configured NumPad.
 ```swift
 import NumPad
 
