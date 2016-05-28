@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = "NumPad"
-    s.version          = "1.0.7"
+    s.version          = "1.0.8"
     s.summary          = "Number Pad"
     s.homepage         = "https://github.com/efremidze/NumPad"
     s.license          = 'MIT'

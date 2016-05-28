@@ -53,9 +53,10 @@ numPad.item = { [unowned numPad] position in
         }
     }()
     item.titleColor = {
-        if (position.row, position.column) == (3, 0) {
+        switch (position.row, position.column) {
+        case (3, 0):
             return .orangeColor()
-        } else {
+        default:
             return UIColor(white: 0.3, alpha: 1)
         }
     }()

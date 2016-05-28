@@ -1,3 +1,0 @@
-codecov:
-  ignore:          # files and folders that will be removed during processing
-    - "Example/*"
