@@ -8,10 +8,13 @@
 
 import UIKit
 
+public typealias Row = Int
+public typealias Column = Int
+
 // MARK: - Position
 public struct Position {
-    public let row: Int
-    public let column: Int
+    public let row: Row
+    public let column: Column
 }
 
 // MARK: - Item
@@ -59,7 +62,7 @@ public class NumPad: UIView {
             return 3
          }
      */
-    public var columns: (Int -> Int) = { _ in 0 }
+    public var columns: (Row -> Int) = { _ in 0 }
     
     /**
      The item at position.
