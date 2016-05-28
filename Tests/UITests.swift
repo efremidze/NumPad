@@ -1,14 +1,14 @@
 //
-//  Tests.swift
-//  Tests
+//  UITests.swift
+//  NumPad
 //
-//  Created by Lasha Efremidze on 5/22/16.
+//  Created by Lasha Efremidze on 5/27/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 
 import XCTest
 
-class Tests: XCTestCase {
+class UITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

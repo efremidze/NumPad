@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Example
 //
-//  Created by Lasha Efremidze on 5/2/16.
+//  Created by Lasha Efremidze on 5/27/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import NumPad
 
 class ViewController: UIViewController {
-    
+
     private let borderColor = UIColor(white: 0.9, alpha: 1)
     
     private lazy var containerView: UIView = { [unowned self] in
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }()
     
     private lazy var numPad: NumPad = { [unowned self] in
-        let numPad = NumPad()
+        let numPad = DefaultNumPad()
         numPad.itemTapped = self.itemTapped
         numPad.translatesAutoresizingMaskIntoConstraints = false
         numPad.backgroundColor = self.borderColor
@@ -54,11 +54,15 @@ class ViewController: UIViewController {
         containerView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[textField(==120)][numPad]|", options: [], metrics: nil, views: views))
     }
     
-    private func itemTapped(item: Item, position: Position) {
-        let index = numPad.index(forPosition: position)
-        if index == 9 {
+}
+
+private extension ViewController {
+    
+    func itemTapped(item: Item, position: Position) {
+        switch (position.row, position.column) {
+        case (3, 0):
             textField.text = nil
-        } else {
+        default:
             let item = numPad.item(forPosition: position)!
             let string = textField.text! + item.title!
             if Int(string) == 0 {

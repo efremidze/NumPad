@@ -8,10 +8,13 @@
 
 import UIKit
 
+public typealias Row = Int
+public typealias Column = Int
+
 // MARK: - Position
 public struct Position {
-    public let row: Int
-    public let column: Int
+    public let row: Row
+    public let column: Column
 }
 
 // MARK: - Item
@@ -59,7 +62,7 @@ public class NumPad: UIView {
             return 3
          }
      */
-    public var columns: (Int -> Int) = { _ in 0 }
+    public var columns: (Row -> Int) = { _ in 0 }
     
     /**
      The item at position.
@@ -77,7 +80,7 @@ public class NumPad: UIView {
              return CGSize(width: 20, height: 20)
          }
      */
-    public var itemSize: (Position -> CGSize) = { _ in CGSize() }
+    public var itemSize: (Position -> CGSize)?
     
     /**
      The item was tapped handler.
@@ -106,28 +109,17 @@ public extension NumPad {
         return (cell as? Cell)?.item
     }
     
-    /// Returns the item size at the specified position.
-    func size(forItemAtPosition position: Position) -> CGSize {
-        let indexPath = self.indexPath(forPosition: position)
-        
-        let numberOfRows = CGFloat(rows)
-        let numberOfColumns = CGFloat(columns(indexPath.section))
-        
-        var size = collectionView.frame.size
-        size.width /= numberOfColumns
-        size.height /= numberOfRows
-        return size
-    }
-    
 }
 
 // MARK: - Private Helpers
 extension NumPad {
     
+    /// Returns the index path at the specified position.
     func indexPath(forPosition position: Position) -> NSIndexPath {
         return NSIndexPath(forItem: position.column, inSection: position.row)
     }
     
+    /// Returns the position at the specified index path.
     func position(forIndexPath indexPath: NSIndexPath) -> Position {
         return Position(row: indexPath.section, column: indexPath.item)
     }
@@ -170,7 +162,13 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let position = numPad.position(forIndexPath: indexPath)
-        return numPad.itemSize(position)
+        return numPad.itemSize?(position) ?? {
+            let indexPath = numPad.indexPath(forPosition: position)
+            var size = collectionView.frame.size
+            size.width /= CGFloat(numPad.columns(indexPath.section))
+            size.height /= CGFloat(numPad.rows)
+            return size
+        }()
     }
     
 }
@@ -221,15 +219,61 @@ class Cell: UICollectionViewCell {
 // MARK: - UIImage
 extension UIImage {
     
-    convenience init(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
-        var rect = CGRectZero
-        rect.size = size
+    convenience init(color: UIColor) {
+        let size = CGSize(width: 1, height: 1)
+        let rect = CGRect(origin: CGPoint(), size: size)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         color.setFill()
         UIRectFill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         self.init(CGImage: image.CGImage!)
+    }
+    
+}
+
+// MARK: - DefaultNumPad
+public class DefaultNumPad: NumPad {
+    
+    override public init(frame: CGRect) {
+        super.init(frame: frame)
+        initialize()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initialize()
+    }
+    
+    func initialize() {
+        rows = 4
+        columns = { _ in 3 }
+        item = { [unowned self] position in
+            var item = Item()
+            item.title = {
+                switch (position.row, position.column) {
+                case (3, 0):
+                    return "C"
+                case (3, 1):
+                    return "0"
+                case (3, 2):
+                    return "00"
+                default:
+                    var index = (0..<position.row).map { self.columns($0) }.reduce(0, combine: +)
+                    index += position.column
+                    return "\(index + 1)"
+                }
+            }()
+            item.titleColor = {
+                if (position.row, position.column) == (3, 0) {
+                    return .orangeColor()
+                } else {
+                    return UIColor(white: 0.3, alpha: 1)
+                }
+            }()
+            item.titleFont = .systemFontOfSize(40)
+            return item
+        }
     }
     
 }

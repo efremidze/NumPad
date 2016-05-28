@@ -1,8 +1,8 @@
 //
 //  Tests.swift
-//  Tests
+//  NumPad
 //
-//  Created by Lasha Efremidze on 5/25/16.
+//  Created by Lasha Efremidze on 5/27/16.
 //  Copyright © 2016 Lasha Efremidze. All rights reserved.
 //
 
@@ -30,7 +30,7 @@ class Tests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
-        let numPad = NumPad()
+        let numPad = DefaultNumPad()
         numPad.frame = viewController.view.bounds
         numPad.itemTapped = { _ in }
         viewController.view.addSubview(numPad)
