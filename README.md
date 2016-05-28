@@ -1,4 +1,9 @@
-# NumPad [![CI Status](http://img.shields.io/travis/efremidze/NumPad.svg?style=flat)](https://travis-ci.org/efremidze/NumPad) ![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg) [![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![License](https://img.shields.io/cocoapods/l/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad) [![Coverage Status](https://coveralls.io/repos/github/efremidze/NumPad/badge.svg?branch=master)](https://coveralls.io/github/efremidze/NumPad?branch=master)
+# NumPad
+
+[![Twitter](https://img.shields.io/badge/Twitter-@lasha_-blue.svg?style=flat)](http://twitter.com/lasha_)
+[![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
+[![CI Status](http://img.shields.io/travis/efremidze/NumPad.svg?style=flat)](https://travis-ci.org/efremidze/NumPad)
+[![codebeat badge](https://codebeat.co/badges/c41fb90e-aa9f-4a40-85b4-9df9011e7931)](https://codebeat.co/projects/github-com-efremidze-numpad)
 
 Number Pad inspired by [Square](https://square.com). This module is based on [LEAmountInputView](https://github.com/efremidze/LEAmountInputView).
 
