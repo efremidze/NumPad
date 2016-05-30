@@ -71,7 +71,7 @@ numPad.item = { [unowned numPad] position in
 addSubview(numPad)
 ```
 
-Or use `DefaultNumPad` for a preconfigured NumPad:
+Or use the `DefaultNumPad` for a standard NumPad:
 
 ```swift
 let numPad = DefaultNumPad()
