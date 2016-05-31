@@ -27,6 +27,10 @@ To install with [Carthage](https://github.com/Carthage/Carthage), simply add thi
 github "efremidze/NumPad"
 ```
 
+### Manually
+1. Download and drop ```NumPad.swift``` in your project.  
+2. Congratulations!
+
 ## Usage
 
 At first, import NumPad library:
