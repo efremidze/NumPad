@@ -12,10 +12,7 @@ public typealias Row = Int
 public typealias Column = Int
 
 // MARK: - Position
-public struct Position {
-    public let row: Row
-    public let column: Column
-}
+public typealias Position = (row: Row, column: Column)
 
 // MARK: - Item
 public struct Item {
@@ -24,9 +21,15 @@ public struct Item {
     public var image: UIImage?
     public var title: String?
     public var titleColor: UIColor? = .blackColor()
-    public var titleFont: UIFont?
+    public var font: UIFont? = .systemFontOfSize(17)
     
     public init() {}
+    public init(title: String?) {
+        self.title = title
+    }
+    public init(image: UIImage?) {
+        self.image = image
+    }
 }
 
 // MARK: - NumPad
@@ -194,7 +197,7 @@ class Cell: UICollectionViewCell {
             
             button.setTitleColor(item?.titleColor, forState: .Normal)
             
-            button.titleLabel?.font = item?.titleFont
+            button.titleLabel?.font = item?.font
             
             button.setImage(item?.image, forState: .Normal)
             
@@ -251,7 +254,7 @@ public class DefaultNumPad: NumPad {
         item = { [unowned self] position in
             var item = Item()
             item.title = {
-                switch (position.row, position.column) {
+                switch position {
                 case (3, 0):
                     return "C"
                 case (3, 1):
@@ -265,14 +268,14 @@ public class DefaultNumPad: NumPad {
                 }
             }()
             item.titleColor = {
-                switch (position.row, position.column) {
+                switch position {
                 case (3, 0):
                     return .orangeColor()
                 default:
                     return UIColor(white: 0.3, alpha: 1)
                 }
             }()
-            item.titleFont = .systemFontOfSize(40)
+            item.font = .systemFontOfSize(40)
             return item
         }
     }

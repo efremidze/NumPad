@@ -48,7 +48,7 @@ numPad.columns = { _ in 3 }
 numPad.item = { [unowned numPad] position in
     var item = Item()
     item.title = {
-        switch (position.row, position.column) {
+        switch position {
         case (3, 0):
             return "C"
         case (3, 1):
@@ -62,14 +62,14 @@ numPad.item = { [unowned numPad] position in
         }
     }()
     item.titleColor = {
-        switch (position.row, position.column) {
+        switch position {
         case (3, 0):
             return .orangeColor()
         default:
             return UIColor(white: 0.3, alpha: 1)
         }
     }()
-    item.titleFont = .systemFontOfSize(40)
+    item.font = .systemFontOfSize(40)
     return item
 }
 addSubview(numPad)
