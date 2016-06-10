@@ -12,10 +12,7 @@ public typealias Row = Int
 public typealias Column = Int
 
 // MARK: - Position
-public struct Position {
-    public let row: Row
-    public let column: Column
-}
+public typealias Position = (row: Row, column: Column)
 
 // MARK: - Item
 public struct Item {
@@ -251,7 +248,7 @@ public class DefaultNumPad: NumPad {
         item = { [unowned self] position in
             var item = Item()
             item.title = {
-                switch (position.row, position.column) {
+                switch position {
                 case (3, 0):
                     return "C"
                 case (3, 1):
@@ -265,7 +262,7 @@ public class DefaultNumPad: NumPad {
                 }
             }()
             item.titleColor = {
-                switch (position.row, position.column) {
+                switch position {
                 case (3, 0):
                     return .orangeColor()
                 default:
