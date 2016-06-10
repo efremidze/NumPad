@@ -106,6 +106,11 @@ public extension NumPad {
         return (cell as? Cell)?.item
     }
     
+    // Returns position.
+    subscript(row: Row, column: Column) -> Position {
+        return (row, column)
+    }
+    
 }
 
 // MARK: - Private Helpers
