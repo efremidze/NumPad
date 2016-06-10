@@ -21,9 +21,15 @@ public struct Item {
     public var image: UIImage?
     public var title: String?
     public var titleColor: UIColor? = .blackColor()
-    public var titleFont: UIFont?
+    public var font: UIFont? = .systemFontOfSize(17)
     
     public init() {}
+    public init(title: String?) {
+        self.title = title
+    }
+    public init(image: UIImage?) {
+        self.image = image
+    }
 }
 
 // MARK: - NumPad
@@ -104,11 +110,6 @@ public extension NumPad {
         let indexPath = self.indexPath(forPosition: position)
         let cell = collectionView.cellForItemAtIndexPath(indexPath)
         return (cell as? Cell)?.item
-    }
-    
-    // Returns position.
-    subscript(row: Row, column: Column) -> Position {
-        return (row, column)
     }
     
 }
@@ -196,7 +197,7 @@ class Cell: UICollectionViewCell {
             
             button.setTitleColor(item?.titleColor, forState: .Normal)
             
-            button.titleLabel?.font = item?.titleFont
+            button.titleLabel?.font = item?.font
             
             button.setImage(item?.image, forState: .Normal)
             
@@ -274,7 +275,7 @@ public class DefaultNumPad: NumPad {
                     return UIColor(white: 0.3, alpha: 1)
                 }
             }()
-            item.titleFont = .systemFontOfSize(40)
+            item.font = .systemFontOfSize(40)
             return item
         }
     }
