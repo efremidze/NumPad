@@ -1,6 +1,5 @@
 # NumPad
 
-[![Twitter](https://img.shields.io/badge/Twitter-@lasha_-blue.svg?style=flat)](http://twitter.com/lasha_)
 [![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
 [![CI Status](http://img.shields.io/travis/efremidze/NumPad.svg?style=flat)](https://travis-ci.org/efremidze/NumPad)
 [![codebeat badge](https://codebeat.co/badges/c41fb90e-aa9f-4a40-85b4-9df9011e7931)](https://codebeat.co/projects/github-com-efremidze-numpad)
