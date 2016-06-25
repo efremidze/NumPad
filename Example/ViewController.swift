@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     
     private lazy var numPad: NumPad = { [unowned self] in
         let numPad = DefaultNumPad()
-        numPad.itemTapped = self.itemTapped
+//        numPad.itemTapped = self.itemTapped
         numPad.translatesAutoresizingMaskIntoConstraints = false
         numPad.backgroundColor = self.borderColor
         self.containerView.addSubview(numPad)
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        numPad.delegate = self
         let views = ["containerView": containerView, "textField": textField, "numPad": numPad]
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[containerView]|", options: [], metrics: nil, views: views))
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[containerView]|", options: [], metrics: nil, views: views))
@@ -56,21 +56,21 @@ class ViewController: UIViewController {
     
 }
 
-private extension ViewController {
-    
-    func itemTapped(item: Item, position: Position) {
-        switch (position.row, position.column) {
-        case (3, 0):
-            textField.text = nil
-        default:
-            let item = numPad.item(forPosition: position)!
-            let string = textField.text! + item.title!
-            if Int(string) == 0 {
-                textField.text = nil
-            } else {
-                textField.text = string
-            }
-        }
+extension ViewController: NumPadDelegate{
+  func didTapNumPad(numPad: NumPad, item: Item, position: Position) {
+    switch (position.row, position.column) {
+    case (3, 0):
+      textField.text = nil
+    default:
+      let item = numPad.item(forPosition: position)!
+      let string = textField.text! + item.title!
+      if Int(string) == 0 {
+        textField.text = nil
+      } else {
+        textField.text = string
+      }
     }
-    
+  }
 }
+
+
