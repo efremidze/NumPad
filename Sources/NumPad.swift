@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+//MARK: NumPad Delegate
+
+public protocol NumPadDelegate: class {
+  func didTapNumPad(numPad: NumPad, item: Item, position: Position)
+}
+
 public typealias Row = Int
 public typealias Column = Int
 
@@ -93,7 +100,12 @@ public class NumPad: UIView {
          }
      */
     public var itemTapped: ((Item, Position) -> Void)?
+  
+    /** Handler tapped item
     
+   */
+    public weak var delegate: NumPadDelegate?
+  
     override public func layoutSubviews() {
         super.layoutSubviews()
         
@@ -152,9 +164,16 @@ extension CollectionView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
         let item = numPad.item(position)
         cell.item = item
+      
+//        cell.buttonTapped = { [unowned self] _ in
+//          self.numPad.itemTapped?(item, position)
+//        }
+      
+        //Delegate
         cell.buttonTapped = { [unowned self] _ in
-            self.numPad.itemTapped?(item, position)
+          self.numPad.delegate?.didTapNumPad(self.numPad, item: item, position: position)
         }
+      
         return cell
     }
     
