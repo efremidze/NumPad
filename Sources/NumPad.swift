@@ -191,23 +191,23 @@ class Cell: UICollectionViewCell {
         return button
     }()
     
-    var item: Item? {
+    var item: Item! {
         didSet {
-            button.setTitle(item?.title, forState: .Normal)
+            button.setTitle(item.title, forState: .Normal)
             
-            button.setTitleColor(item?.titleColor, forState: .Normal)
+            button.setTitleColor(item.titleColor, forState: .Normal)
             
-            button.titleLabel?.font = item?.font
+            button.titleLabel?.font = item.font
             
-            button.setImage(item?.image, forState: .Normal)
+            button.setImage(item.image, forState: .Normal)
             
-            var image = item?.backgroundColor.map { UIImage(color: $0) }
+            var image = item.backgroundColor.map { UIImage(color: $0) }
             button.setBackgroundImage(image, forState: .Normal)
-            image = item?.selectedBackgroundColor.map { UIImage(color: $0) }
+            image = item.selectedBackgroundColor.map { UIImage(color: $0) }
             button.setBackgroundImage(image, forState: .Highlighted)
             button.setBackgroundImage(image, forState: .Selected)
             
-            button.tintColor = item?.titleColor
+            button.tintColor = item.titleColor
         }
     }
     
