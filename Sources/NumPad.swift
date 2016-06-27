@@ -32,6 +32,36 @@ public struct Item {
     }
 }
 
+// MARK: - NumPadDataSource
+public protocol NumPadDataSource: class {
+    
+    /// The number of rows.
+    func numberOfRowsInNumPad(numPad: NumPad) -> Int
+    
+    /// The number of columns.
+    func numPad(numPad: NumPad, numberOfColumnsInRow row: Row) -> Int
+    
+    /// The item at position.
+    func numPad(numPad: NumPad, itemAtPosition position: Position) -> Item
+    
+}
+
+// MARK: - NumPadDelegate
+public protocol NumPadDelegate: class {
+    
+    /// The item was tapped handler.
+    func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position)
+    
+    /// The size of an item at position.
+    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
+    
+}
+
+public extension NumPadDelegate {
+    func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position) {}
+    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize { return CGSize() }
+}
+
 // MARK: - NumPad
 public class NumPad: UIView {
     
@@ -55,44 +85,11 @@ public class NumPad: UIView {
         return collectionView
     }()
     
-    /// The number of rows.
-    public var rows: Int = 0
+    /// Data source for the number pad.
+    public weak var dataSource: NumPadDataSource?
     
-    /**
-     The number of columns in row.
-     
-         numPad.columns = { row in
-            return 3
-         }
-     */
-    public var columns: (Row -> Int) = { _ in 0 }
-    
-    /**
-     The item at position.
-     
-         numPad.item = { position in
-            return Item()
-         }
-     */
-    public var item: (Position -> Item) = { _ in Item() }
-    
-    /**
-     The size of an item at position.
-     
-         numPad.itemSize = { position in
-             return CGSize(width: 20, height: 20)
-         }
-     */
-    public var itemSize: (Position -> CGSize)?
-    
-    /**
-     The item was tapped handler.
-     
-         numPad.itemTapped = { item, position in
-             print("item tapped")
-         }
-     */
-    public var itemTapped: ((Item, Position) -> Void)?
+    /// Delegate for the number pad.
+    public weak var delegate: NumPadDelegate?
     
     override public func layoutSubviews() {
         super.layoutSubviews()
@@ -140,20 +137,20 @@ class CollectionView: UICollectionView {
 extension CollectionView: UICollectionViewDataSource {
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return numPad.rows
+        return numPad.dataSource?.numberOfRowsInNumPad(numPad) ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numPad.columns(section)
+        return numPad.dataSource?.numPad(numPad, numberOfColumnsInRow: section) ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let position = numPad.position(forIndexPath: indexPath)
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
-        let item = numPad.item(position)
+        let item = numPad.dataSource?.numPad(numPad, itemAtPosition: position) ?? Item()
         cell.item = item
         cell.buttonTapped = { [unowned self] _ in
-            self.numPad.itemTapped?(item, position)
+            self.numPad.delegate?.numPad(self.numPad, itemTapped: item, atPosition: position)
         }
         return cell
     }
@@ -165,11 +162,12 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let position = numPad.position(forIndexPath: indexPath)
-        return numPad.itemSize?(position) ?? {
+        let size = numPad.delegate?.numPad(numPad, sizeForItemAtPosition: position) ?? CGSize()
+        return !size.isZero() ? size : {
             let indexPath = numPad.indexPath(forPosition: position)
             var size = collectionView.frame.size
-            size.width /= CGFloat(numPad.columns(indexPath.section))
-            size.height /= CGFloat(numPad.rows)
+            size.width /= CGFloat(self.collectionView(self, numberOfItemsInSection: indexPath.section))
+            size.height /= CGFloat(self.numberOfSectionsInCollectionView(self))
             return size
         }()
     }
@@ -235,6 +233,15 @@ extension UIImage {
     
 }
 
+// MARK: - CGSize
+extension CGSize {
+    
+    func isZero() -> Bool {
+        return CGSizeEqualToSize(self, CGSize())
+    }
+    
+}
+
 // MARK: - DefaultNumPad
 public class DefaultNumPad: NumPad {
     
@@ -249,35 +256,47 @@ public class DefaultNumPad: NumPad {
     }
     
     func initialize() {
-        rows = 4
-        columns = { _ in 3 }
-        item = { [unowned self] position in
-            var item = Item()
-            item.title = {
-                switch position {
-                case (3, 0):
-                    return "C"
-                case (3, 1):
-                    return "0"
-                case (3, 2):
-                    return "00"
-                default:
-                    var index = (0..<position.row).map { self.columns($0) }.reduce(0, combine: +)
-                    index += position.column
-                    return "\(index + 1)"
-                }
-            }()
-            item.titleColor = {
-                switch position {
-                case (3, 0):
-                    return .orangeColor()
-                default:
-                    return UIColor(white: 0.3, alpha: 1)
-                }
-            }()
-            item.font = .systemFontOfSize(40)
-            return item
-        }
+        dataSource = self
+    }
+    
+}
+
+extension DefaultNumPad: NumPadDataSource {
+    
+    public func numberOfRowsInNumPad(numPad: NumPad) -> Int {
+        return 4
+    }
+    
+    public func numPad(numPad: NumPad, numberOfColumnsInRow row: Row) -> Int {
+        return 3
+    }
+    
+    public func numPad(numPad: NumPad, itemAtPosition position: Position) -> Item {
+        var item = Item()
+        item.title = {
+            switch position {
+            case (3, 0):
+                return "C"
+            case (3, 1):
+                return "0"
+            case (3, 2):
+                return "00"
+            default:
+                var index = (0..<position.row).map { self.numPad(self, numberOfColumnsInRow: $0) }.reduce(0, combine: +)
+                index += position.column
+                return "\(index + 1)"
+            }
+        }()
+        item.titleColor = {
+            switch position {
+            case (3, 0):
+                return .orangeColor()
+            default:
+                return UIColor(white: 0.3, alpha: 1)
+            }
+        }()
+        item.font = .systemFontOfSize(40)
+        return item
     }
     
 }
