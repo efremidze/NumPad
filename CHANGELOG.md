@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 1.0.11](https://github.com/efremidze/NumPad/releases/tag/1.0.11)
+Released on 2016-06-26
+
+- Added Protocols
+
 ## [Version 1.0.10](https://github.com/efremidze/NumPad/releases/tag/1.0.10)
 Released on 2016-06-10
 
