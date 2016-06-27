@@ -38,56 +38,41 @@ At first, import NumPad library:
 import NumPad
 ```
 
-Then just create your `NumPad`:
+Set the data source and delegate:
 
 ```swift
 let numPad = NumPad()
-numPad.rows = 4
-numPad.columns = { _ in 3 }
-numPad.item = { [unowned numPad] position in
-    var item = Item()
-    item.title = {
-        switch position {
-        case (3, 0):
-            return "C"
-        case (3, 1):
-            return "0"
-        case (3, 2):
-            return "00"
-        default:
-            var index = (0..<position.row).map { numPad.columns($0) }.reduce(0, combine: +)
-            index += position.column
-            return "\(index + 1)"
-        }
-    }()
-    item.titleColor = {
-        switch position {
-        case (3, 0):
-            return .orangeColor()
-        default:
-            return UIColor(white: 0.3, alpha: 1)
-        }
-    }()
-    item.font = .systemFontOfSize(40)
-    return item
-}
+numPad.dataSource = self
+numPad.delegate = self
 addSubview(numPad)
 ```
 
-Or use the `DefaultNumPad` for a standard NumPad:
+Or use the `DefaultNumPad` for a preconfigured NumPad:
 
 ```swift
 let numPad = DefaultNumPad()
 addSubview(numPad)
 ```
 
-### Customization
+### Data Source
 ```swift
-var rows: Int // number of rows
-var columns: (Row -> Int) // number of columns for row
-var item: (Position -> Item) // item for position
-var itemSize: (Position -> CGSize)? // item size for position
-var itemTapped: ((Item, Position) -> Void)? // handle item tap
+// number of rows
+func numberOfRowsInNumPad(numPad: NumPad) -> Int
+
+// number of columns for row
+func numPad(numPad: NumPad, numberOfColumnsInRow row: Row) -> Int
+
+// item for position
+func numPad(numPad: NumPad, itemAtPosition position: Position) -> Item
+```
+
+### Delegate
+```swift
+// handle item tap
+func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position)
+
+// item size for position
+func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
 ```
 
 ## Contributions

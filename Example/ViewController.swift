@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     
     private lazy var numPad: NumPad = { [unowned self] in
         let numPad = DefaultNumPad()
-        numPad.itemTapped = self.itemTapped
+        numPad.delegate = self
         numPad.translatesAutoresizingMaskIntoConstraints = false
         numPad.backgroundColor = self.borderColor
         self.containerView.addSubview(numPad)
@@ -56,9 +56,9 @@ class ViewController: UIViewController {
     
 }
 
-private extension ViewController {
+extension ViewController: NumPadDelegate {
     
-    func itemTapped(item: Item, position: Position) {
+    func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position) {
         switch (position.row, position.column) {
         case (3, 0):
             textField.text = nil

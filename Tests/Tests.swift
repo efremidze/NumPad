@@ -32,7 +32,6 @@ class Tests: XCTestCase {
         
         let numPad = DefaultNumPad()
         numPad.frame = viewController.view.bounds
-        numPad.itemTapped = { _ in }
         viewController.view.addSubview(numPad)
         
         viewController.view.setNeedsLayout()
