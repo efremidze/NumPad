@@ -16,12 +16,12 @@ public typealias Position = (row: Row, column: Column)
 
 // MARK: - Item
 public struct Item {
-    public var backgroundColor: UIColor? = .whiteColor()
-    public var selectedBackgroundColor: UIColor? = .clearColor()
+    public var backgroundColor: UIColor? = .white
+    public var selectedBackgroundColor: UIColor? = .clear
     public var image: UIImage?
     public var title: String?
-    public var titleColor: UIColor? = .blackColor()
-    public var font: UIFont? = .systemFontOfSize(17)
+    public var titleColor: UIColor? = .black
+    public var font: UIFont? = .systemFont(ofSize: 17)
     
     public init() {}
     public init(title: String?) {
@@ -36,13 +36,13 @@ public struct Item {
 public protocol NumPadDataSource: class {
     
     /// The number of rows.
-    func numberOfRowsInNumPad(numPad: NumPad) -> Int
+    func numberOfRowsInNumPad(_ numPad: NumPad) -> Int
     
     /// The number of columns.
-    func numPad(numPad: NumPad, numberOfColumnsInRow row: Row) -> Int
+    func numPad(_ numPad: NumPad, numberOfColumnsInRow row: Row) -> Int
     
     /// The item at position.
-    func numPad(numPad: NumPad, itemAtPosition position: Position) -> Item
+    func numPad(_ numPad: NumPad, itemAtPosition position: Position) -> Item
     
 }
 
@@ -50,20 +50,20 @@ public protocol NumPadDataSource: class {
 public protocol NumPadDelegate: class {
     
     /// The item was tapped handler.
-    func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position)
+    func numPad(_ numPad: NumPad, itemTapped item: Item, atPosition position: Position)
     
     /// The size of an item at position.
-    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
+    func numPad(_ numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize
     
 }
 
 public extension NumPadDelegate {
-    func numPad(numPad: NumPad, itemTapped item: Item, atPosition position: Position) {}
-    func numPad(numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize { return CGSize() }
+    func numPad(_ numPad: NumPad, itemTapped item: Item, atPosition position: Position) {}
+    func numPad(_ numPad: NumPad, sizeForItemAtPosition position: Position) -> CGSize { return CGSize() }
 }
 
 // MARK: - NumPad
-public class NumPad: UIView {
+open class NumPad: UIView {
     
     lazy var collectionView: UICollectionView = { [unowned self] in
         let layout = UICollectionViewFlowLayout()
@@ -71,27 +71,27 @@ public class NumPad: UIView {
         layout.minimumInteritemSpacing = 0
         let collectionView = CollectionView(frame: CGRect(), collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .clearColor()
+        collectionView.backgroundColor = .clear
         collectionView.allowsSelection = false
-        collectionView.scrollEnabled = false
+        collectionView.isScrollEnabled = false
         collectionView.numPad = self
         collectionView.dataSource = collectionView
         collectionView.delegate = collectionView
-        collectionView.registerClass(Cell.self, forCellWithReuseIdentifier: String(Cell))
+        collectionView.register(Cell.self, forCellWithReuseIdentifier: String(describing: Cell.self))
         self.addSubview(collectionView)
         let views = ["collectionView": collectionView]
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[collectionView]|", options: [], metrics: nil, views: views))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[collectionView]|", options: [], metrics: nil, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[collectionView]|", options: [], metrics: nil, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[collectionView]|", options: [], metrics: nil, views: views))
         return collectionView
     }()
     
     /// Data source for the number pad.
-    public weak var dataSource: NumPadDataSource?
+    open weak var dataSource: NumPadDataSource?
     
     /// Delegate for the number pad.
-    public weak var delegate: NumPadDelegate?
+    open weak var delegate: NumPadDelegate?
     
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         collectionView.collectionViewLayout.invalidateLayout()
@@ -105,7 +105,7 @@ public extension NumPad {
     /// Returns the item at the specified position.
     func item(forPosition position: Position) -> Item? {
         let indexPath = self.indexPath(forPosition: position)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath)
+        let cell = collectionView.cellForItem(at: indexPath)
         return (cell as? Cell)?.item
     }
     
@@ -115,12 +115,12 @@ public extension NumPad {
 extension NumPad {
     
     /// Returns the index path at the specified position.
-    func indexPath(forPosition position: Position) -> NSIndexPath {
-        return NSIndexPath(forItem: position.column, inSection: position.row)
+    func indexPath(forPosition position: Position) -> IndexPath {
+        return IndexPath(item: position.column, section: position.row)
     }
     
     /// Returns the position at the specified index path.
-    func position(forIndexPath indexPath: NSIndexPath) -> Position {
+    func position(forIndexPath indexPath: IndexPath) -> Position {
         return Position(row: indexPath.section, column: indexPath.item)
     }
     
@@ -136,17 +136,17 @@ class CollectionView: UICollectionView {
 // MARK: - UICollectionViewDataSource
 extension CollectionView: UICollectionViewDataSource {
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return numPad.dataSource?.numberOfRowsInNumPad(numPad) ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numPad.dataSource?.numPad(numPad, numberOfColumnsInRow: section) ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let position = numPad.position(forIndexPath: indexPath)
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(String(Cell), forIndexPath: indexPath) as! Cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Cell.self), for: indexPath) as! Cell
         let item = numPad.dataSource?.numPad(numPad, itemAtPosition: position) ?? Item()
         cell.item = item
         cell.buttonTapped = { [unowned self] _ in
@@ -160,14 +160,14 @@ extension CollectionView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegateFlowLayout
 extension CollectionView: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let position = numPad.position(forIndexPath: indexPath)
         let size = numPad.delegate?.numPad(numPad, sizeForItemAtPosition: position) ?? CGSize()
         return !size.isZero() ? size : {
             let indexPath = numPad.indexPath(forPosition: position)
             var size = collectionView.frame.size
             size.width /= CGFloat(self.collectionView(self, numberOfItemsInSection: indexPath.section))
-            size.height /= CGFloat(self.numberOfSectionsInCollectionView(self))
+            size.height /= CGFloat(self.numberOfSections(in: self))
             return size
         }()
     }
@@ -178,40 +178,40 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
 class Cell: UICollectionViewCell {
     
     lazy var button: UIButton = { [unowned self] in
-        let button = UIButton(type: .Custom)
-        button.titleLabel?.textAlignment = .Center
+        let button = UIButton(type: .custom)
+        button.titleLabel?.textAlignment = .center
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(_buttonTapped), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(_buttonTapped), for: .touchUpInside)
         self.contentView.addSubview(button)
         let views = ["button": button]
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-1-[button]|", options: [], metrics: nil, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-1-[button]|", options: [], metrics: nil, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-1-[button]|", options: [], metrics: nil, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-1-[button]|", options: [], metrics: nil, views: views))
         return button
     }()
     
     var item: Item! {
         didSet {
-            button.setTitle(item.title, forState: .Normal)
+            button.setTitle(item.title, for: UIControlState())
             
-            button.setTitleColor(item.titleColor, forState: .Normal)
+            button.setTitleColor(item.titleColor, for: UIControlState())
             
             button.titleLabel?.font = item.font
             
-            button.setImage(item.image, forState: .Normal)
+            button.setImage(item.image, for: UIControlState())
             
             var image = item.backgroundColor.map { UIImage(color: $0) }
-            button.setBackgroundImage(image, forState: .Normal)
+            button.setBackgroundImage(image, for: UIControlState())
             image = item.selectedBackgroundColor.map { UIImage(color: $0) }
-            button.setBackgroundImage(image, forState: .Highlighted)
-            button.setBackgroundImage(image, forState: .Selected)
+            button.setBackgroundImage(image, for: .highlighted)
+            button.setBackgroundImage(image, for: .selected)
             
             button.tintColor = item.titleColor
         }
     }
     
-    var buttonTapped: (UIButton -> Void)?
+    var buttonTapped: ((UIButton) -> Void)?
     
-    @IBAction func _buttonTapped(button: UIButton) {
+    @IBAction func _buttonTapped(_ button: UIButton) {
         buttonTapped?(button)
     }
     
@@ -228,7 +228,7 @@ extension UIImage {
         UIRectFill(rect)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        self.init(CGImage: image.CGImage!)
+        self.init(cgImage: (image?.cgImage!)!)
     }
     
 }
@@ -237,13 +237,13 @@ extension UIImage {
 extension CGSize {
     
     func isZero() -> Bool {
-        return CGSizeEqualToSize(self, CGSize())
+        return self.equalTo(CGSize())
     }
     
 }
 
 // MARK: - DefaultNumPad
-public class DefaultNumPad: NumPad {
+open class DefaultNumPad: NumPad {
     
     override public init(frame: CGRect) {
         super.init(frame: frame)
@@ -263,15 +263,15 @@ public class DefaultNumPad: NumPad {
 
 extension DefaultNumPad: NumPadDataSource {
     
-    public func numberOfRowsInNumPad(numPad: NumPad) -> Int {
+    public func numberOfRowsInNumPad(_ numPad: NumPad) -> Int {
         return 4
     }
     
-    public func numPad(numPad: NumPad, numberOfColumnsInRow row: Row) -> Int {
+    public func numPad(_ numPad: NumPad, numberOfColumnsInRow row: Row) -> Int {
         return 3
     }
     
-    public func numPad(numPad: NumPad, itemAtPosition position: Position) -> Item {
+    public func numPad(_ numPad: NumPad, itemAtPosition position: Position) -> Item {
         var item = Item()
         item.title = {
             switch position {
@@ -282,7 +282,7 @@ extension DefaultNumPad: NumPadDataSource {
             case (3, 2):
                 return "00"
             default:
-                var index = (0..<position.row).map { self.numPad(self, numberOfColumnsInRow: $0) }.reduce(0, combine: +)
+                var index = (0..<position.row).map { self.numPad(self, numberOfColumnsInRow: $0) }.reduce(0, +)
                 index += position.column
                 return "\(index + 1)"
             }
@@ -290,12 +290,12 @@ extension DefaultNumPad: NumPadDataSource {
         item.titleColor = {
             switch position {
             case (3, 0):
-                return .orangeColor()
+                return .orange
             default:
                 return UIColor(white: 0.3, alpha: 1)
             }
         }()
-        item.font = .systemFontOfSize(40)
+        item.font = .systemFont(ofSize: 40)
         return item
     }
     

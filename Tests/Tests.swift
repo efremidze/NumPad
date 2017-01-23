@@ -11,12 +11,12 @@ import XCTest
 
 class Tests: XCTestCase {
     
-    private var viewController: UIViewController!
+    var viewController: UIViewController!
     
     override func setUp() {
         super.setUp()
         viewController = UIViewController()
-        viewController.view.frame = UIScreen.mainScreen().bounds
+        viewController.view.frame = UIScreen.main.bounds
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -37,7 +37,7 @@ class Tests: XCTestCase {
         viewController.view.setNeedsLayout()
         viewController.view.layoutIfNeeded()
         
-        let cell = numPad.collectionView.visibleCells().flatMap { $0 as? Cell }.first!
+        let cell = numPad.collectionView.visibleCells.flatMap { $0 as? Cell }.first!
         cell._buttonTapped(cell.button)
     }
     
