@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         textField.textAlignment = .right
         textField.textColor = UIColor(white: 0.3, alpha: 1)
         textField.font = .systemFont(ofSize: 40)
-        textField.placeholder = "0"
+        textField.placeholder = "0".currency()
         textField.isEnabled = false
         self.containerView.addSubview(textField)
         return textField
@@ -64,13 +64,31 @@ extension ViewController: NumPadDelegate {
             textField.text = nil
         default:
             let item = numPad.item(forPosition: position)!
-            let string = textField.text! + item.title!
+            let string = textField.text!.sanitized() + item.title!
             if Int(string) == 0 {
                 textField.text = nil
             } else {
-                textField.text = string
+                textField.text = string.currency()
             }
         }
+    }
+    
+}
+
+extension String {
+    
+    func currency() -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        let digits = NSDecimalNumber(string: sanitized())
+        let place = NSDecimalNumber(value: powf(10, 2))
+        return formatter.string(from: digits.dividing(by: place))
+    }
+    
+    func sanitized() -> String {
+        return String(self.characters.filter { "01234567890".characters.contains($0) })
     }
     
 }
