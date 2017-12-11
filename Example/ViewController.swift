@@ -88,7 +88,7 @@ extension String {
     }
     
     func sanitized() -> String {
-        return String(self.characters.filter { "01234567890".characters.contains($0) })
+        return filter { "01234567890".contains($0) }
     }
     
 }

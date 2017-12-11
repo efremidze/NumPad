@@ -18,9 +18,10 @@ $ pod try NumPad
 
 - iOS 8.0+
 - Xcode 8.0+
-- Swift 3.0 (NumPad 2.x), Swift 2.3 (NumPad 1.x)
+- Swift 4 (NumPad 3.x), Swift 3 (NumPad 2.x), Swift 2.3 (NumPad 1.x)
 
 ## Installation
+
 ###CocoaPods
 To install with [CocoaPods](http://cocoapods.org/), simply add this in your `Podfile`:
 ```ruby
