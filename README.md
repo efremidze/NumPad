@@ -1,6 +1,6 @@
 # NumPad
 
-[![Language](https://img.shields.io/badge/Swift-3.1-orange.svg?style=flat)](https://swift.org)
+[![Language](https://img.shields.io/badge/Swift-4-orange.svg?style=flat)](https://swift.org)
 [![Version](https://img.shields.io/cocoapods/v/NumPad.svg?style=flat)](http://cocoapods.org/pods/NumPad)
 [![CI Status](http://img.shields.io/travis/efremidze/NumPad.svg?style=flat)](https://travis-ci.org/efremidze/NumPad)
 [![codebeat badge](https://codebeat.co/badges/c41fb90e-aa9f-4a40-85b4-9df9011e7931)](https://codebeat.co/projects/github-com-efremidze-numpad)
@@ -17,7 +17,7 @@ $ pod try NumPad
 ## Requirements
 
 - iOS 8.0+
-- Xcode 8.0+
+- Xcode 9.0+
 - Swift 4 (NumPad 3.x), Swift 3 (NumPad 2.x), Swift 2.3 (NumPad 1.x)
 
 ## Installation
