@@ -41,27 +41,18 @@ github "efremidze/NumPad"
 
 ## Usage
 
-At first, import NumPad library:
+Add `NumPad` to your view.
 
 ```swift
 import NumPad
-```
 
-Set the data source and delegate:
-
-```swift
 let numPad = NumPad()
 numPad.dataSource = self
 numPad.delegate = self
 addSubview(numPad)
 ```
 
-Or use the `DefaultNumPad` for a preconfigured NumPad:
-
-```swift
-let numPad = DefaultNumPad()
-addSubview(numPad)
-```
+Use the `DefaultNumPad` for a preconfigured dataSource and delegate.
 
 ### Data Source
 ```swift
