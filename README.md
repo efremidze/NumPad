@@ -46,7 +46,7 @@ Add `NumPad` to your view.
 ```swift
 import NumPad
 
-let numPad = NumPad()
+let numPad = NumPad(frame: CGRect(x: 0, y: 0, width: 320, height: 600))
 numPad.dataSource = self
 numPad.delegate = self
 addSubview(numPad)
