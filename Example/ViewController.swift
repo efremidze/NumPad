@@ -13,10 +13,10 @@ class ViewController: UIViewController {
     
     lazy var containerView: UIView = { [unowned self] in
         let containerView = UIView()
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.layer.borderColor = self.borderColor.cgColor
         containerView.layer.borderWidth = 1
         self.view.addSubview(containerView)
+        containerView.constrainToEdges()
         return containerView
     }()
     
@@ -46,12 +46,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let views = ["containerView": containerView, "textField": textField, "numPad": numPad]
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[containerView]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[containerView]|", options: [], metrics: nil, views: views))
+        let views: [String : Any] = ["textField": textField, "numPad": numPad]
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[textField]-20-|", options: [], metrics: nil, views: views))
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[numPad]|", options: [], metrics: nil, views: views))
         containerView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[textField(==120)][numPad]|", options: [], metrics: nil, views: views))
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        numPad.invalidateLayout()
     }
     
 }
@@ -71,24 +75,6 @@ extension ViewController: NumPadDelegate {
                 textField.text = string.currency()
             }
         }
-    }
-    
-}
-
-extension String {
-    
-    func currency() -> String? {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.minimumFractionDigits = 2
-        formatter.maximumFractionDigits = 2
-        let digits = NSDecimalNumber(string: sanitized())
-        let place = NSDecimalNumber(value: powf(10, 2))
-        return formatter.string(from: digits.dividing(by: place))
-    }
-    
-    func sanitized() -> String {
-        return filter { "01234567890".contains($0) }
     }
     
 }

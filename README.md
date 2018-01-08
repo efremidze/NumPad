@@ -16,7 +16,7 @@ $ pod try NumPad
 
 ## Requirements
 
-- iOS 8.0+
+- iOS 9.0+
 - Xcode 9.0+
 - Swift 4 (NumPad 3.x), Swift 3 (NumPad 2.x), Swift 2.3 (NumPad 1.x)
 
