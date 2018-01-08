@@ -1,5 +1,10 @@
 # Change log
 
+## [Version 3.0.1](https://github.com/efremidze/NumPad/releases/tag/3.0.1)
+Released on 2018-01-07
+
+- Bug fixes
+
 ## [Version 3.0.0](https://github.com/efremidze/NumPad/releases/tag/3.0.0)
 Released on 2017-12-10
 

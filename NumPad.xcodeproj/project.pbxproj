@@ -10,6 +10,11 @@
 		714434241FDE249800F2AF13 /* NumPad.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 714434211FDE249800F2AF13 /* NumPad.podspec */; };
 		714434251FDE249800F2AF13 /* CHANGELOG.md in Resources */ = {isa = PBXBuildFile; fileRef = 714434221FDE249800F2AF13 /* CHANGELOG.md */; };
 		714434261FDE249800F2AF13 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 714434231FDE249800F2AF13 /* README.md */; };
+		71FCD2D720030D5300E9187A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCD2D620030D5300E9187A /* Extensions.swift */; };
+		71FCD2D92003124700E9187A /* DefaultNumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCD2D82003124700E9187A /* DefaultNumPad.swift */; };
+		71FCD2DB2003127500E9187A /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCD2DA2003127500E9187A /* Cell.swift */; };
+		71FCD2DD2003160B00E9187A /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCD2DC2003160B00E9187A /* Item.swift */; };
+		71FCD2DF200316CD00E9187A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71FCD2DE200316CD00E9187A /* Extension.swift */; };
 		8B6F4F6C1CF8C82F00ECA134 /* NumPad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7950051CF83A0E00392FCA /* NumPad.framework */; };
 		8B6F4F6D1CF8C82F00ECA134 /* NumPad.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8B7950051CF83A0E00392FCA /* NumPad.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8B6F4F721CF8C8EA00ECA134 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6F4F711CF8C8EA00ECA134 /* UITests.swift */; };
@@ -58,6 +63,11 @@
 		714434211FDE249800F2AF13 /* NumPad.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NumPad.podspec; sourceTree = "<group>"; };
 		714434221FDE249800F2AF13 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		714434231FDE249800F2AF13 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		71FCD2D620030D5300E9187A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		71FCD2D82003124700E9187A /* DefaultNumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNumPad.swift; sourceTree = "<group>"; };
+		71FCD2DA2003127500E9187A /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		71FCD2DC2003160B00E9187A /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		71FCD2DE200316CD00E9187A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		8B6F4F711CF8C8EA00ECA134 /* UITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		8B6F4F731CF8C92300ECA134 /* Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		8B7950051CF83A0E00392FCA /* NumPad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NumPad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +140,10 @@
 				8B79500A1CF83A0E00392FCA /* Info.plist */,
 				8B7950081CF83A0E00392FCA /* NumPad.h */,
 				8B946FC51CF83A83009D0C67 /* NumPad.swift */,
+				71FCD2D82003124700E9187A /* DefaultNumPad.swift */,
+				71FCD2DA2003127500E9187A /* Cell.swift */,
+				71FCD2DC2003160B00E9187A /* Item.swift */,
+				71FCD2D620030D5300E9187A /* Extensions.swift */,
 			);
 			name = NumPad;
 			path = Sources;
@@ -140,6 +154,7 @@
 			children = (
 				8BB480D51CF83B1C00CC27E2 /* AppDelegate.swift */,
 				8BB480D71CF83B1C00CC27E2 /* ViewController.swift */,
+				71FCD2DE200316CD00E9187A /* Extension.swift */,
 				8BB480D91CF83B1C00CC27E2 /* Main.storyboard */,
 				8BB480DC1CF83B1C00CC27E2 /* Assets.xcassets */,
 				8BB480DE1CF83B1C00CC27E2 /* LaunchScreen.storyboard */,
@@ -307,7 +322,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71FCD2DD2003160B00E9187A /* Item.swift in Sources */,
 				8B946FC61CF83A83009D0C67 /* NumPad.swift in Sources */,
+				71FCD2DB2003127500E9187A /* Cell.swift in Sources */,
+				71FCD2D720030D5300E9187A /* Extensions.swift in Sources */,
+				71FCD2D92003124700E9187A /* DefaultNumPad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71FCD2DF200316CD00E9187A /* Extension.swift in Sources */,
 				8BB480D81CF83B1C00CC27E2 /* ViewController.swift in Sources */,
 				8BB480D61CF83B1C00CC27E2 /* AppDelegate.swift in Sources */,
 			);
@@ -410,7 +430,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -461,7 +481,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
