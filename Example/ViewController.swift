@@ -67,7 +67,7 @@ extension ViewController: NumPadDelegate {
         case (3, 0):
             textField.text = nil
         default:
-            let item = numPad.item(forPosition: position)!
+            let item = numPad.item(for: position)!
             let string = textField.text!.sanitized() + item.title!
             if Int(string) == 0 {
                 textField.text = nil
