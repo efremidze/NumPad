@@ -79,13 +79,6 @@ open class NumPad: UIView {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    /// Returns the item at the specified position.
-    open func item(forPosition position: Position) -> Item? {
-        let indexPath = self.indexPath(forPosition: position)
-        let cell = collectionView.cellForItem(at: indexPath)
-        return (cell as? Cell)?.item
-    }
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -101,8 +94,8 @@ extension NumPad: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let position = self.position(forIndexPath: indexPath)
+        guard let item = dataSource?.numPad(self, itemAtPosition: position) else { return Cell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Cell.self), for: indexPath) as! Cell
-        let item = dataSource?.numPad(self, itemAtPosition: position) ?? Item()
         cell.item = item
         cell.buttonTapped = { [unowned self] _ in
             self.delegate?.numPad(self, itemTapped: item, atPosition: position)
@@ -119,7 +112,7 @@ extension NumPad: UICollectionViewDelegateFlowLayout {
         let position = self.position(forIndexPath: indexPath)
         let size = delegate?.numPad(self, sizeForItemAtPosition: position) ?? CGSize()
         return !size.isZero() ? size : {
-            let indexPath = self.indexPath(forPosition: position)
+            let indexPath = self.indexPath(for: position)
             var size = collectionView.bounds.size
             size.width /= CGFloat(numberOfColumns(section: indexPath.section))
             size.height /= CGFloat(numberOfRows())
@@ -130,10 +123,22 @@ extension NumPad: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: -
+public extension NumPad {
+    
+    /// Returns the item at the specified position.
+    func item(for position: Position) -> Item? {
+        let indexPath = self.indexPath(for: position)
+        let cell = collectionView.cellForItem(at: indexPath)
+        return (cell as? Cell)?.item
+    }
+    
+}
+
+// MARK: -
 private extension NumPad {
     
     /// Returns the index path at the specified position.
-    func indexPath(forPosition position: Position) -> IndexPath {
+    func indexPath(for position: Position) -> IndexPath {
         return IndexPath(item: position.column, section: position.row)
     }
     
