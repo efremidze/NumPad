@@ -54,10 +54,13 @@ open class NumPad: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.allowsSelection = false
+//        collectionView.allowsSelection = false
+        collectionView.allowsMultipleSelection = true
         collectionView.isScrollEnabled = false
         collectionView.backgroundColor = .clear
         collectionView.register(Cell.self, forCellWithReuseIdentifier: String(describing: Cell.self))
+//        collectionView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panned(recognizer:))))
+//        collectionView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(longPressed(recognizer:))))
         self.addSubview(collectionView)
         collectionView.constrainToEdges()
         return collectionView
@@ -79,6 +82,39 @@ open class NumPad: UIView {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
+    @IBAction func longPressed(recognizer: UITapGestureRecognizer) {
+        let point = recognizer.location(in: self)
+        switch recognizer.state {
+        case .began:
+            print("--->")
+            for cell in collectionView.visibleCells as! [Cell] {
+                let containsPoint = cell.frame.contains(point)
+                cell.isHighlighted = containsPoint
+            }
+        default: break
+        }
+    }
+    
+    @IBAction func panned(recognizer: UIPanGestureRecognizer) {
+        let point = recognizer.location(in: self)
+        switch recognizer.state {
+        case .changed, .ended:
+            for cell in collectionView.visibleCells as! [Cell] {
+                let containsPoint = cell.frame.contains(point)
+                switch recognizer.state {
+                case .changed:
+                    cell.isHighlighted = containsPoint
+                case .ended where containsPoint:
+                    cell.button.sendActions(for: .touchUpInside)
+                    fallthrough
+                default:
+                    cell.isHighlighted = false
+                }
+            }
+        default: break
+        }
+    }
+    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -97,10 +133,33 @@ extension NumPad: UICollectionViewDataSource {
         guard let item = dataSource?.numPad(self, itemAtPosition: position) else { return Cell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Cell.self), for: indexPath) as! Cell
         cell.item = item
-        cell.buttonTapped = { [unowned self] _ in
-            self.delegate?.numPad(self, itemTapped: item, atPosition: position)
-        }
+//        cell.buttonTapped = { [unowned self] _ in
+//            self.delegate?.numPad(self, itemTapped: item, atPosition: position)
+//        }
         return cell
+    }
+    
+}
+
+// MARK: - UICollectionViewDataSource
+extension NumPad: UICollectionViewDelegate {
+    
+//    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let position = self.position(forIndexPath: indexPath)
+//        guard let item = dataSource?.numPad(self, itemAtPosition: position) else { return }
+//        delegate?.numPad(self, itemTapped: item, atPosition: position)
+//    }
+    
+    public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        print("----->")
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        print("----> Unhighlight")
     }
     
 }
