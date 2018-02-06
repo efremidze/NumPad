@@ -54,8 +54,7 @@ open class NumPad: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.allowsSelection = false
-        collectionView.allowsMultipleSelection = true
+        collectionView.allowsSelection = false
         collectionView.isScrollEnabled = false
         collectionView.backgroundColor = .clear
         collectionView.register(Cell.self, forCellWithReuseIdentifier: String(describing: Cell.self))
@@ -137,29 +136,6 @@ extension NumPad: UICollectionViewDataSource {
 //            self.delegate?.numPad(self, itemTapped: item, atPosition: position)
 //        }
         return cell
-    }
-    
-}
-
-// MARK: - UICollectionViewDataSource
-extension NumPad: UICollectionViewDelegate {
-    
-//    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let position = self.position(forIndexPath: indexPath)
-//        guard let item = dataSource?.numPad(self, itemAtPosition: position) else { return }
-//        delegate?.numPad(self, itemTapped: item, atPosition: position)
-//    }
-    
-    public func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-        print("----->")
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
-        print("----> Unhighlight")
     }
     
 }

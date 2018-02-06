@@ -38,12 +38,40 @@ class Cell: UICollectionViewCell {
 //        buttonTapped?(button)
 //    }
     
-    override var isHighlighted: Bool {
+    var _isHighlighted: Bool = false {
         didSet {
-            print("\(isHighlighted)")
-            guard isHighlighted != oldValue else { return }
-            button.alpha = isHighlighted ? 0.5 : 1
+            print("\(_isHighlighted)")
+            guard _isHighlighted != oldValue else { return }
+            button.alpha = _isHighlighted ? 0.5 : 1
         }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        _isHighlighted = true
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        
+        if let touch = touches.first, self.hitTest(touch.location(in: self), with: event) != nil {
+            _isHighlighted = true
+        } else {
+            _isHighlighted = false
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        
+        _isHighlighted = false
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        
+        _isHighlighted = false
     }
     
 }
