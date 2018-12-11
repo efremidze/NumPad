@@ -92,7 +92,7 @@ extension NumPad: UICollectionViewDataSource {
         return numberOfColumns(section: section)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let position = self.position(forIndexPath: indexPath)
         guard let item = dataSource?.numPad(self, itemAtPosition: position) else { return Cell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: Cell.self), for: indexPath) as! Cell
