@@ -23,7 +23,7 @@ class Cell: UICollectionViewCell {
     var item: Item! {
         didSet {
             if let attributedString = item.attributedString {
-              button.titleLabel?.attributedText  = attributedString 
+              button.setAttributedTitle(attributedString, for: .normal)
             }else{
               button.title = item.title
               button.titleColor = item.titleColor
