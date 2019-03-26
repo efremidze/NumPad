@@ -15,11 +15,18 @@ public struct Item {
     public var title: String?
     public var titleColor: UIColor? = .black
     public var font: UIFont? = .systemFont(ofSize: 17)
+    public var attributedString: NSAttributedString?
     
     public init() {}
+
+    public init(attributedString: NSAttributedString) {
+        self.attributedString = attributedString
+    }
+
     public init(title: String?) {
         self.title = title
     }
+
     public init(image: UIImage?) {
         self.image = image
     }

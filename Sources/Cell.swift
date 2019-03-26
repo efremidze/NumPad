@@ -22,11 +22,16 @@ class Cell: UICollectionViewCell {
     
     var item: Item! {
         didSet {
-            button.title = item.title
-            button.titleColor = item.titleColor
-            button.titleLabel?.font = item.font
+            if let attributedString = item.attributedString {
+              button.titleLabel.attributedString = attributedString 
+            }else{
+                
+              button.title = item.title
+              button.titleColor = item.titleColor
+              button.titleLabel?.font = item.font
+              button.tintColor = item.titleColor
+            }
             button.image = item.image
-            button.tintColor = item.titleColor
             var image = item.backgroundColor.map { UIImage(color: $0) }
             button.backgroundImage = image
             image = item.selectedBackgroundColor.map { UIImage(color: $0) }
