@@ -23,9 +23,8 @@ class Cell: UICollectionViewCell {
     var item: Item! {
         didSet {
             if let attributedString = item.attributedString {
-              button.titleLabel.attributedString = attributedString 
+              button.titleLabel?.attributedText  = attributedString 
             }else{
-                
               button.title = item.title
               button.titleColor = item.titleColor
               button.titleLabel?.font = item.font
